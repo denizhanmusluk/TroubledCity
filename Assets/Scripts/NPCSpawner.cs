@@ -40,7 +40,7 @@ public class NPCSpawner : MonoBehaviour,IStartGameObserver
     IEnumerator SpawnCustomer()
     {
         yield return new WaitForSeconds(2f);
-        Debug.Log("spawn start");
+
         //player = GameObject.Find("Player");
         while (spawnActive)
         {

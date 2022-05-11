@@ -6,6 +6,8 @@ public class EmergencArea : MonoBehaviour, IHelper
 {
     [SerializeField] int _helpNo;
     [SerializeField] public int helpNo { get; set; }
+    public bool helpDrawActive { get; set; }
+
     [SerializeField] public GameObject fireParticle;
     private void Start()
     {

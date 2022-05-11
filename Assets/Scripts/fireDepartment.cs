@@ -15,18 +15,58 @@ public class fireDepartment : MonoBehaviour,IHelper
 	Vector3 firstPos;
 	Quaternion firstRot;
 	bool npcHitActive = false;
-    private void Start()
+	bool reMovingActive = false;
+	public bool helpDrawActive { get; set; }
+
+	private void Start()
     {
+		helpDrawActive = true;
 		helpNo = _helpNo;
 		firstPos = transform.position;
 		firstRot = transform.rotation;
     }
-    public void helper(Line currentLine, GameObject troubleArea)
+	void Update()
 	{
+		//if (Input.GetMouseButtonDown(0))
+		//{
+		//	Ray raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
+		//	RaycastHit hit;
+		//	//RaycastHit raycastHit;
+		//	if (Physics.Raycast(raycast, out hit))
+		//	{
+		//		Debug.Log("road1");
+		//		if (hit.collider.name == "road")
+		//		{
+		//			Debug.Log("road");
+
+		//		}
+		//	}
+		//}
+		//if (Input.GetMouseButtonDown(0))
+		//{
+		//	Ray raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
+		//	RaycastHit hit;
+		//	Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		//	//RaycastHit raycastHit;
+		//	if (Physics.Raycast(raycast, out hit))
+		//	{
+		//		if (hit.collider.GetComponent<IHelper>() != null && reMovingActive)
+		//		{
+		//			reMovingActive = false;
+		//			gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+		//			StartCoroutine(reMove(_currentLine.GetComponent<LineRenderer>().positionCount - 1));
+		//		}
+		//	}
+		//}
+	}
+	public void helper(Line currentLine, GameObject troubleArea)
+	{
+		helpDrawActive = false;
 		_currentLine = currentLine;
 		StartCoroutine(following(currentLine));
 		_troubleArea = troubleArea;
 		gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+		//GetComponent<LinesDrawer>().enabled = false;
 	}
 	IEnumerator following(Line currentLine)
 	{
@@ -145,6 +185,9 @@ public class fireDepartment : MonoBehaviour,IHelper
 		}
 		StartCoroutine(reMove(_currentLine.GetComponent<LineRenderer>().positionCount - 1));
 		yield return null;
+		reMovingActive = true;
+		//gameObject.layer = LayerMask.NameToLayer("Default");
+
 	}
 	IEnumerator reMove(int startNode)
 	{
@@ -209,15 +252,14 @@ public class fireDepartment : MonoBehaviour,IHelper
 			yield return null;
 		}
 		StartCoroutine(lineDestroy());
-		gameObject.layer = LayerMask.NameToLayer("Default");
 	}
 	private void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.GetComponent<Vehicle>() != null)
         {
 			crash = true;
-			Debug.Log("crash");
 			forceDirection = (transform.position - collision.transform.position).normalized;
+			collision.transform.GetComponent<Vehicle>().currentSelection = Vehicle.States.stopMove;
 			//transform.GetComponent<Rigidbody>().AddForce(transform.up + forceDirection * 500);
 			collision.transform.GetComponent<Rigidbody>().AddForce(transform.up*1500 - forceDirection * 1200);
 		}
@@ -227,14 +269,15 @@ public class fireDepartment : MonoBehaviour,IHelper
 			{
 				collision.gameObject.AddComponent<Rigidbody>();
 			}
-			collision.gameObject.GetComponent<Rigidbody>().AddForce(collision.transform.up * 15 - forceDirection * 7);
+			forceDirection = (transform.position - collision.transform.position).normalized;
+
+			collision.transform.GetComponent<Rigidbody>().AddForce(collision.transform.up * 15 - forceDirection * 7);
 			collision.transform.GetComponent<Rigidbody>().AddTorque(new Vector3(forceDirection.z, 0, forceDirection.x) * 10000);
 
 		}
 		if(collision.transform.tag == "roadbounding")
         {
 			crash = true;
-			Debug.Log("crash");
 			forceDirection = (transform.position - collision.transform.position).normalized;
 		}
 	}
@@ -253,10 +296,16 @@ public class fireDepartment : MonoBehaviour,IHelper
 			_currentLine.GetComponent<LineRenderer>().positionCount -= 2;
 			yield return null;
 		}
+		//GetComponent<LinesDrawer>().enabled = true;
+
 		_currentLine.UsePhysics(true);
+		Debug.Log("destroy");
+
 		Destroy(_currentLine.gameObject);
 
 		_currentLine = null;
+		helpDrawActive = true;
+		gameObject.layer = LayerMask.NameToLayer("Default");
 
 	}
 	void crashCar()

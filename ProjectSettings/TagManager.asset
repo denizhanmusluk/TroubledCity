@@ -9,6 +9,8 @@ TagManager:
   - emergency
   - light
   - roadbounding
+  - troublearea
+  - helper
   layers:
   - Default
   - TransparentFX

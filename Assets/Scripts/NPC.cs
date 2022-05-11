@@ -76,6 +76,14 @@ public class NPC : MonoBehaviour, ITroubleFix
     {
         currentSelection = States.dead;
         GetComponent<Ragdoll>().RagdollActivateWithForce(true, forceDirection);
+        StartCoroutine(npcStandUp());
+    }
+    IEnumerator npcStandUp()
+    {
+        yield return new WaitForSeconds(3f);
+        GetComponent<Ragdoll>().RagdollActivate(false);
+        currentSelection = States.moveTarget;
+
     }
     public void stopping()
     {
@@ -85,6 +93,11 @@ public class NPC : MonoBehaviour, ITroubleFix
 
     public void moveTarget()
     {
+        if(agent.speed > 3)
+        {
+            agent.speed -= Time.deltaTime;
+            anim.speed -= Time.deltaTime / 6;
+        }
         agent.SetDestination(destination.position);
 
         if (Vector3.Distance(transform.position, destination.position) < 1)
@@ -303,7 +316,12 @@ public class NPC : MonoBehaviour, ITroubleFix
         if(other.GetComponent<NPC>() != null)
         {
             trigger = true;
-            Debug.Log("trigger");
+
+        }
+        if(other.GetComponent<Vehicle>() != null)
+        {
+            agent.speed = 9;
+            anim.speed = 2;
         }
     }
     public void torubleFix()

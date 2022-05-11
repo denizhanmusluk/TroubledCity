@@ -15,33 +15,38 @@ public class LinesDrawer : MonoBehaviour {
 [SerializeField]	Line currentLine;
 
 	Camera cam;
-	bool drawing = false;
+public	bool drawing = false;
 	GameObject followObject;
 	int helpNo;
 	void Start ( ) {
 		cam = Camera.main;
 		cantDrawOverLayerIndex = LayerMask.NameToLayer ( "CantDrawOver" );
 	}
-	GameObject helperTeamTemp;
+	[SerializeField] GameObject helperTeamTemp;
 	[SerializeField] Material[] lineMaterial;
-	void Update ( ) {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //	Ray raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //	RaycastHit hit;
-        //	//RaycastHit raycastHit;
-        //	if (Physics.Raycast(raycast, out hit))
-        //	{
-        //		Debug.Log("road1");
-        //		if (hit.collider.name == "road")
-        //		{
-        //			Debug.Log("road");
+	void Update()
+	{
+		clickAction();
+	}
+	void clickAction()
+    {
+		//if (Input.GetMouseButtonDown(0))
+		//{
+		//	Ray raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
+		//	RaycastHit hit;
+		//	//RaycastHit raycastHit;
+		//	if (Physics.Raycast(raycast, out hit))
+		//	{
+		//		Debug.Log("road1");
+		//		if (hit.collider.name == "road")
+		//		{
+		//			Debug.Log("road");
 
-        //		}
-        //	}
-        //}
-        if (Input.GetMouseButtonDown(0))
-        {
+		//		}
+		//	}
+		//}
+		if (Input.GetMouseButtonDown(0))
+		{
 			Ray raycast = cam.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 			Vector3 mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -49,13 +54,13 @@ public class LinesDrawer : MonoBehaviour {
 			if (Physics.Raycast(raycast, out hit))
 			{
 
-				if (hit.collider.GetComponent<IHelper>() != null)
+				if ( hit.collider.transform.name == transform.name)
 				{
 					helperTeamTemp = hit.collider.gameObject;
 					Globals.cameraMove = false;
 					Debug.Log("hospital");
 
-					BeginDraw();
+						BeginDraw();
 					drawing = true;
 					followObject = hit.collider.gameObject;
 					helpNo = hit.collider.GetComponent<IHelper>().helpNo;
@@ -69,7 +74,7 @@ public class LinesDrawer : MonoBehaviour {
 		//if (Input.GetMouseButton(0))
 
 		if (currentLine != null && drawing)
-            Draw();
+			Draw();
 
 		if (Input.GetMouseButtonUp(0))
 		{
@@ -80,29 +85,33 @@ public class LinesDrawer : MonoBehaviour {
 			//RaycastHit raycastHit;
 			if (Physics.Raycast(raycast, out hit))
 			{
-				if (hit.collider.GetComponent<IHelper>() != null)
+				if (helperTeamTemp.GetComponent<IHelper>().helpDrawActive)
 				{
-					EndDraw();
-					//StartCoroutine(following());
-					helperTeamTemp.GetComponent<IHelper>().helper(currentLine, hit.collider.gameObject);
-				}
-                else
-                {
-					if (currentLine != null && drawing)
+					if (hit.collider.GetComponent<IHelper>() != null && hit.collider.tag == "troublearea")
 					{
-						drawing = false;
-						StartCoroutine(lineDestroy());
+						EndDraw();
+						//StartCoroutine(following());
+						helperTeamTemp.GetComponent<IHelper>().helper(currentLine, hit.collider.gameObject);
+						Debug.Log("deneme");
 					}
-                }
+					else
+					{
+						if (currentLine != null && drawing && helperTeamTemp.GetComponent<IHelper>().helpDrawActive)
+						{
+							Debug.Log("DESTROY");
+							drawing = false;
+							StartCoroutine(lineDestroy());
+						}
+					}
+				}
 			}
 			drawing = false;
 
 		}
 	}
-
 	// Begin Draw ----------------------------------------------
 	void BeginDraw ( ) {
-		currentLine = Instantiate ( linePrefab, this.transform ).GetComponent <Line> ( );
+		currentLine = Instantiate ( linePrefab ).GetComponent <Line> ( );
 
 		//Set line properties
 		currentLine.UsePhysics ( false );
@@ -120,13 +129,8 @@ public class LinesDrawer : MonoBehaviour {
 		//RaycastHit raycastHit;
 		if (Physics.Raycast(raycast, out hit))
         {
-			Debug.Log("draw");
-
 			if (hit.collider.GetComponent<IRoad>() != null)
 			{
-				Debug.Log("road");
-
-
 				currentLine.AddPoint(hit.point);
                 //Debug.Log("road" + hit.point);
                 //if (Physics.SphereCast(mousePosition, lineWidth / 3f, Vector3.zero, out hit, 10))
