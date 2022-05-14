@@ -11,7 +11,7 @@ public static class Globals
     public static int currentLevel = 1;
     public static int maxScore = 0;
     public static int currentLevelIndex = 0, LevelCount;
-    public static int moneyAmount = 0;
+    public static int moneyAmount = 10000;
     public static int maxBuildLevel = 0;
 
 

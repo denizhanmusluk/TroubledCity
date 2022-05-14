@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class HelperTeam : MonoBehaviour
 {
+	[SerializeField] public int equipSpeed;
+	[SerializeField] public float troubleSolutionSpeed;
+
 	public int helpNo;
 	bool crash = false;
 	Vector3 forceDirection;
@@ -17,8 +20,10 @@ public class HelperTeam : MonoBehaviour
 	bool reMovingActive = false;
 	public bool helpDrawActive { get; set; }
 
+	[SerializeField] GameObject questionMark;
 	private void Start()
 	{
+		questionMark.SetActive(false);
 		helpDrawActive = true;
 		firstPos = transform.position;
 		firstRot = transform.rotation;
@@ -65,7 +70,7 @@ public class HelperTeam : MonoBehaviour
 				currentCrashNode = (int)posNo;
 				break;
 			}
-			transform.position = Vector3.MoveTowards(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition((int)posNo), 50 * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition((int)posNo), equipSpeed * Time.deltaTime);
 			if (posNo + 1 < currentLine.GetComponent<LineRenderer>().positionCount)
 			{
 				Vector3 dir = (currentLine.GetComponent<LineRenderer>().GetPosition((int)posNo + 1) - transform.position);
@@ -107,7 +112,7 @@ public class HelperTeam : MonoBehaviour
 				//crashCar();
 				break;
 			}
-			transform.position = Vector3.MoveTowards(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition(currentLine.GetComponent<LineRenderer>().positionCount - 1), 50 * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition(currentLine.GetComponent<LineRenderer>().positionCount - 1), equipSpeed * Time.deltaTime);
 			yield return null;
 		}
 		if (Vector3.Distance(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition(currentLine.GetComponent<LineRenderer>().positionCount - 1)) <= 1f)
@@ -120,12 +125,13 @@ public class HelperTeam : MonoBehaviour
 	{
 		if (_troubleArea.GetComponent<IHelper>().helpNo == helpNo)
 		{
+			GetComponent<helpProgress>().progressing(troubleSolutionSpeed);
 			for (int i = 0; i < waterParticle.Length; i++)
 			{
 				waterParticle[i].SetActive(true);
 			}
 			float counter = 0f;
-			while (counter < 5f)
+			while (counter < troubleSolutionSpeed)
 			{
 				counter += Time.deltaTime;
 
@@ -141,6 +147,7 @@ public class HelperTeam : MonoBehaviour
 				}
 				yield return null;
 			}
+			moneyCanvas.Instance.moneySpawn(_troubleArea.transform.parent.position, 6);
 			for (int i = 0; i < _troubleArea.transform.GetChild(0).childCount; i++)
 			{
 				_troubleArea.transform.GetChild(0).GetChild(i).transform.localScale = new Vector3(1, 1, 1);
@@ -148,11 +155,18 @@ public class HelperTeam : MonoBehaviour
 
 			}
 			_troubleArea.transform.parent = null;
+			TroubleManager.Instance.uiDir.targetList.Remove(_troubleArea);
 			Destroy(_troubleArea);
 			for (int i = 0; i < waterParticle.Length; i++)
 			{
 				waterParticle[i].SetActive(false);
 			}
+        }
+        else
+        {
+			questionMark.SetActive(true);
+			yield return new WaitForSeconds(2f);
+			questionMark.SetActive(false);
 		}
 		StartCoroutine(reMove(_currentLine.GetComponent<LineRenderer>().positionCount - 1));
 		yield return null;
@@ -233,6 +247,13 @@ public class HelperTeam : MonoBehaviour
 			crash = true;
 			forceDirection = (transform.position - collision.transform.position).normalized;
 			collision.transform.GetComponent<Vehicle>().currentSelection = Vehicle.States.stopMove;
+			//transform.GetComponent<Rigidbody>().AddForce(transform.up + forceDirection * 500);
+			collision.transform.GetComponent<Rigidbody>().AddForce(transform.up * 1500 - forceDirection * 1200);
+		}
+		if (collision.transform.GetComponent<HelperTeam>() != null)
+		{
+			crash = true;
+			forceDirection = (transform.position - collision.transform.position).normalized;
 			//transform.GetComponent<Rigidbody>().AddForce(transform.up + forceDirection * 500);
 			collision.transform.GetComponent<Rigidbody>().AddForce(transform.up * 1500 - forceDirection * 1200);
 		}
