@@ -127,6 +127,7 @@ public class HelperTeam : MonoBehaviour
 	{
 		if (_troubleArea.GetComponent<IHelper>().helpNo == helpNo)
 		{
+			Globals.tutorialFireCam = true;
 			_troubleArea.GetComponent<troubleArea>().iconSizeDown();
 			if (helpNo == 3)
 			{
@@ -168,7 +169,12 @@ public class HelperTeam : MonoBehaviour
 				{
 					for (int i = 0; i < _troubleArea.transform.GetChild(0).childCount; i++)
 					{
-						_troubleArea.transform.GetChild(0).GetChild(i).transform.localScale = new Vector3(1f - (counter / 5f), 1f - (counter / 5f), 1f - (counter / 5f));
+						_troubleArea.transform.GetChild(0).GetChild(i).transform.localScale = new Vector3(1f - (counter / troubleSolutionSpeed), 1f - (counter / troubleSolutionSpeed), 1f - (counter / troubleSolutionSpeed));
+						if(counter> troubleSolutionSpeed)
+                        {
+							_troubleArea.transform.GetChild(0).GetChild(i).transform.localScale = new Vector3(0,0,0);
+
+						}
 					}
 				}
 				yield return null;
@@ -188,8 +194,9 @@ public class HelperTeam : MonoBehaviour
 			{
 				waterParticle[i].SetActive(false);
 			}
-        }
-        else
+			Globals.tutorialFireCam = false;
+		}
+		else
         {
 			questionMark.SetActive(true);
 			yield return new WaitForSeconds(2f);

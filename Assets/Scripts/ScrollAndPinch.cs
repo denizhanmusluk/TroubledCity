@@ -30,12 +30,12 @@ class ScrollAndPinch : MonoBehaviour,IStartGameObserver
     }
     public void StartGame()
     {
-        Globals.cameraMove = true;
+        //Globals.cameraMove = true;
 
     }
     private void Update()
     {
-        if (Globals.cameraMove)
+        if (Globals.cameraMove && !Globals.tutorialActive)
         {
             cameraAction();
         }

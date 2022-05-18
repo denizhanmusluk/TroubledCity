@@ -30,8 +30,17 @@ public class TroubleManager : MonoBehaviour,IStartGameObserver
         fireTroubleStart();
 
     }
+    public void tutorialTrouble()
+    {
+        var toruble = Instantiate(troubles[0], fireTroublePoints[0].position, fireTroublePoints[0].rotation, fireTroublePoints[0]);
+
+    }
     public void fireTroubleStart()
     {
+        //////////////////
+        //uiDir.targetList.Add(toruble.gameObject);
+        //uiDir.instIcon(toruble.gameObject, 0);
+        //////////////////
         StartCoroutine(fireTroubleSpawn());
     }
     IEnumerator fireTroubleSpawn()
@@ -41,7 +50,7 @@ public class TroubleManager : MonoBehaviour,IStartGameObserver
             yield return new WaitForSeconds(troubleSpawnPeriod);
             int selectionPoint = Random.Range(0, fireTroublePoints.Length);
             //int selectionTrouble = Random.Range(0, troubles.Length);
-            if (fireTroublePoints[selectionPoint].childCount == 0)
+            if (fireTroublePoints[selectionPoint].childCount == 0 && !Globals.tutorialActive)
             {
                 var toruble = Instantiate(troubles[0], fireTroublePoints[selectionPoint].position, fireTroublePoints[selectionPoint].rotation, fireTroublePoints[selectionPoint]);
                 uiDir.targetList.Add(toruble.gameObject);

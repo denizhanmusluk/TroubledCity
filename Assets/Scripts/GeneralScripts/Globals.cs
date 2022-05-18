@@ -24,4 +24,8 @@ public static class Globals
     public static int population = 0;
 
     public static float iconScale = 1;
+
+    public static bool tutorialFireCam = false;
+    public static bool tutorialActive = false;
+
 }

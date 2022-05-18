@@ -15,11 +15,11 @@ public class LineDraw : MonoBehaviour,IStartGameObserver
 
 	[SerializeField] Line currentLine;
 
-	Camera cam;
+public	Camera cam;
 	public bool drawing = false;
 	GameObject followObject;
 	int helpNo;
-	bool clickActionActive = false;
+public	bool clickActionActive = false;
 	void Start()
 	{
 		GameManager.Instance.Add_StartObserver(this);
