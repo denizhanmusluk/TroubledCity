@@ -21,6 +21,8 @@ public class HelperTeam : MonoBehaviour
 	public bool helpDrawActive { get; set; }
 
 	[SerializeField] GameObject questionMark;
+
+	[SerializeField] GameObject policePrefab, doctorPrefab, engineerPrefab;
 	private void Start()
 	{
 		questionMark.SetActive(false);
@@ -125,6 +127,29 @@ public class HelperTeam : MonoBehaviour
 	{
 		if (_troubleArea.GetComponent<IHelper>().helpNo == helpNo)
 		{
+			_troubleArea.GetComponent<troubleArea>().iconSizeDown();
+			if (helpNo == 3)
+			{
+				GameObject engineer = Instantiate(engineerPrefab, transform.position, Quaternion.identity);
+				engineer.GetComponent<engineer>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform.GetChild(0);
+				engineer.GetComponent<engineer>().point1 = transform.GetChild(0);
+				engineer.GetComponent<engineer>().point2 = transform.GetChild(1);
+				engineer.GetComponent<engineer>().point3 = transform.GetChild(2);
+				engineer.GetComponent<engineer>().point4 = transform.GetChild(3);
+			}
+			if (helpNo == 2)
+            {
+				GameObject police = Instantiate(policePrefab, transform.position, Quaternion.identity);
+				police.GetComponent<police>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform.GetChild(0);
+
+            }
+			if (helpNo == 1)
+			{
+				GameObject doctor = Instantiate(doctorPrefab, transform.position, Quaternion.identity);
+				doctor.GetComponent<doctor>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform.GetChild(0);
+
+			}
+
 			GetComponent<helpProgress>().progressing(troubleSolutionSpeed);
 			for (int i = 0; i < waterParticle.Length; i++)
 			{
@@ -139,11 +164,12 @@ public class HelperTeam : MonoBehaviour
 				relativeVector /= relativeVector.magnitude;
 				float newSteer = (relativeVector.x / relativeVector.magnitude) * 50;
 				transform.Rotate(0, newSteer * Time.deltaTime * 10, 0);
-
-				for (int i = 0; i < _troubleArea.transform.GetChild(0).childCount; i++)
+				if (helpNo == 0)
 				{
-					_troubleArea.transform.GetChild(0).GetChild(i).transform.localScale = new Vector3(1f - (counter / 5f), 1f - (counter / 5f), 1f - (counter / 5f));
-
+					for (int i = 0; i < _troubleArea.transform.GetChild(0).childCount; i++)
+					{
+						_troubleArea.transform.GetChild(0).GetChild(i).transform.localScale = new Vector3(1f - (counter / 5f), 1f - (counter / 5f), 1f - (counter / 5f));
+					}
 				}
 				yield return null;
 			}
@@ -156,6 +182,7 @@ public class HelperTeam : MonoBehaviour
 			}
 			_troubleArea.transform.parent = null;
 			TroubleManager.Instance.uiDir.targetList.Remove(_troubleArea);
+			Destroy(_troubleArea.GetComponent<troubleArea>().troubleCanvasIcon);
 			Destroy(_troubleArea);
 			for (int i = 0; i < waterParticle.Length; i++)
 			{
@@ -181,7 +208,7 @@ public class HelperTeam : MonoBehaviour
 		{
 			//followObject.transform.position = currentLine.GetComponent<LineRenderer>().GetPosition((int)posNo);
 
-			transform.position = Vector3.MoveTowards(transform.position, _currentLine.GetComponent<LineRenderer>().GetPosition((int)posNo), 70 * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, _currentLine.GetComponent<LineRenderer>().GetPosition((int)posNo), equipSpeed * Time.deltaTime);
 			if (posNo >= 1)
 			{
 				Vector3 dir = (_currentLine.GetComponent<LineRenderer>().GetPosition((int)posNo - 1) - transform.position);
@@ -226,7 +253,7 @@ public class HelperTeam : MonoBehaviour
 		while (Vector3.Distance(transform.position, _currentLine.GetComponent<LineRenderer>().GetPosition(0)) > 1f)
 		{
 
-			transform.position = Vector3.MoveTowards(transform.position, _currentLine.GetComponent<LineRenderer>().GetPosition(0), 50 * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, _currentLine.GetComponent<LineRenderer>().GetPosition(0), equipSpeed * Time.deltaTime);
 			yield return null;
 		}
 		while (Vector3.Distance(transform.position, firstPos) > 0.1f)
@@ -281,6 +308,10 @@ public class HelperTeam : MonoBehaviour
 		if (other.GetComponent<NPC>() != null && npcHitActive)
 		{
 			other.GetComponent<NPC>().npcDead((other.transform.position - transform.position).normalized);
+		}
+		if (other.GetComponent<guilty>() != null && npcHitActive)
+		{
+			other.GetComponent<guilty>().npcDead((other.transform.position - transform.position).normalized);
 		}
 	}
 	IEnumerator lineDestroy()

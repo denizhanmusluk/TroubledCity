@@ -479,8 +479,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.27, y: 10.860529, z: 7.483785}
-  m_Center: {x: -0, y: 2.9302583, z: -9.466876}
+  m_Size: {x: 18.242603, y: 10.860529, z: 15.978432}
+  m_Center: {x: 4.2181873, y: 2.9302588, z: -6.268036}
 --- !u!54 &5571374995085510029
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -579,7 +579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4745098, g: 0.45882353, b: 0.46666667, a: 1}
+  m_Color: {r: 0.2514658, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -677,7 +677,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 617535889367488700, guid: bcd8ab90c5fd52149bcb19118e605862, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bcd8ab90c5fd52149bcb19118e605862, type: 3}
 --- !u!4 &7292055989923587082 stripped
 Transform:

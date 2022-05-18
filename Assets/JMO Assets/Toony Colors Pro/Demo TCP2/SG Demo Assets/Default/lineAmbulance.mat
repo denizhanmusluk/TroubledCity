@@ -33,7 +33,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 90f5c2a59e018304bb00979205857f25, type: 3}
-        m_Scale: {x: 5, y: 5}
+        m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - _Ramp:
         m_Texture: {fileID: 2800000, guid: f7efee5cdbe39254082e87a9ddcf42e4, type: 3}
@@ -45,8 +45,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Cutoff: 0
-    - _DissolveGradientWidth: 0.384
-    - _DissolveValue: 0.525
+    - _DissolveGradientWidth: 0.93
+    - _DissolveValue: 0.48
     - _DstBlendTCP2: 10
     - _EnableConstSizeOutline: 0
     - _EnableTexturedOutline: 0
@@ -57,8 +57,8 @@ Material:
     - _Offset1: 0
     - _Offset2: 0
     - _Outline: 0.5
-    - _RampSmooth: 0.63
-    - _RampThreshold: 0.5
+    - _RampSmooth: 0.3
+    - _RampThreshold: 0.57
     - _RimMax: 0.7
     - _RimMin: 0.5
     - _SSDistortion: 0.5
@@ -75,11 +75,11 @@ Material:
     - __dummy__: 0
     - __outline_gui_dummy__: 0
     m_Colors:
-    - _Color: {r: 0.6764706, g: 0.6764706, b: 0.6764706, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _HColor: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineColor: {r: 0.072306015, g: 0.122909546, b: 0.30900002, a: 1}
     - _RimColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SColor: {r: 0.4705882, g: 0.44636676, b: 0.44636676, a: 1}
+    - _SColor: {r: 1, g: 1, b: 1, a: 1}
     - _SSAmbColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _SSColor: {r: 1, g: 1, b: 1, a: 1}
     - _SketchColor: {r: 0.5588235, g: 0.5588235, b: 0.5588235, a: 1}

@@ -7,7 +7,7 @@ The script only runs on mobile devices or the remote app.
 
 using UnityEngine;
 using TMPro;
-class ScrollAndPinch : MonoBehaviour
+class ScrollAndPinch : MonoBehaviour,IStartGameObserver
 {
 #if UNITY_IOS || UNITY_ANDROID
     public Camera Camera;
@@ -22,7 +22,17 @@ class ScrollAndPinch : MonoBehaviour
         if (Camera == null)
             Camera = Camera.main;
     }
+    private void Start()
+    {
+        GameManager.Instance.Add_StartObserver(this);
+        Globals.cameraMove = false;
 
+    }
+    public void StartGame()
+    {
+        Globals.cameraMove = true;
+
+    }
     private void Update()
     {
         if (Globals.cameraMove)
@@ -88,17 +98,18 @@ class ScrollAndPinch : MonoBehaviour
             {
                 return;
             }
-            if (Camera.transform.position.y <= 0 && zoom > 1)
+            if (Camera.transform.position.y <= 10 && zoom > 1)
             {
                 zoom = 1;
                 pos1 = Vector3.zero;
             }
-            else if (Camera.transform.position.y >= 100 && zoom < 1)
+            else if (Camera.transform.position.y >= 150 && zoom < 1)
             {
                 zoom = 1;
                 pos1 = Vector3.zero;
             }
-
+            Globals.iconScale =Mathf.Sqrt( Camera.transform.position.y) / 12;
+            RenderSettings.fogEndDistance = 270 + Camera.transform.position.y * 0.7f;
             Camera.transform.position = Vector3.LerpUnclamped(pos1, Camera.transform.position, 1 / zoom);
             //zoomText.text = Camera.transform.position.y + "/" + zoom;
             //Camera.nearClipPlane = Camera.transform.position.y + 50;

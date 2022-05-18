@@ -89,8 +89,10 @@ public class UpgradeManager : MonoBehaviour
 
     public void upgradeClose()
     {
-        panel.SetActive(false);
         panelBG.SetActive(false);
+        StartCoroutine(panelScaleDown(fullPanel));
+
+        
     }
 
 
@@ -141,28 +143,34 @@ public class UpgradeManager : MonoBehaviour
         if (Globals.moneyAmount >= helperCenter.costEquipCountUpgrade[helperCenter.levelEquipCount])
         {
             button1.interactable = true;
+            button1.GetComponent<Image>().fillAmount = 1;
         }
         else
         {
             button1.interactable = false;
+            button1.GetComponent<Image>().fillAmount = (float)Globals.moneyAmount / (float)helperCenter.costEquipCountUpgrade[helperCenter.levelEquipCount];
         }
         //////////////////////////////////////////////////
         if (Globals.moneyAmount >= helperCenter.costEquipSpeedUpgrade[helperCenter.levelEquipSpeed])
         {
             button2.interactable = true;
+            button2.GetComponent<Image>().fillAmount = 1;
         }
         else
         {
             button2.interactable = false;
+            button2.GetComponent<Image>().fillAmount = (float)Globals.moneyAmount / (float)helperCenter.costEquipSpeedUpgrade[helperCenter.levelEquipSpeed];
         }
         //////////////////////////////////////////////////
         if (Globals.moneyAmount >= helperCenter.costTroubleSolutionSpeedUpgrade[helperCenter.levelTroubleSolutionSpeed])
         {
             button3.interactable = true;
+            button3.GetComponent<Image>().fillAmount = 1;
         }
         else
         {
             button3.interactable = false;
+            button3.GetComponent<Image>().fillAmount = (float)Globals.moneyAmount / (float)helperCenter.costTroubleSolutionSpeedUpgrade[helperCenter.levelTroubleSolutionSpeed];
         }
     }
 
@@ -187,6 +195,20 @@ public class UpgradeManager : MonoBehaviour
             yield return null;
         }
         image.localScale = new Vector3(lastImageScale, lastImageScale, lastImageScale);
+
+    }
+    IEnumerator panelScaleDown(RectTransform image)
+    {
+        float counter = lastImageScale;
+            
+        while (counter > firstImageScale)
+        {
+            counter -= 5 * Time.deltaTime;
+            image.localScale = new Vector3(counter, counter, counter);
+            yield return null;
+        }
+        image.localScale = new Vector3(firstImageScale, firstImageScale, firstImageScale);
+        panel.SetActive(false);
 
     }
 }

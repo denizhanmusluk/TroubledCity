@@ -22,4 +22,6 @@ public static class Globals
 
     public static int troubleBuildNo = 0;
     public static int population = 0;
+
+    public static float iconScale = 1;
 }

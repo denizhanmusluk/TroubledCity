@@ -71,15 +71,18 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RampSmooth: 0.706
-    - _RampThreshold: 0.797
+    - _RampSmooth: 0.31
+    - _RampThreshold: 0.57
+    - _Shininess: 0.05
     - _SmoothnessTextureChannel: 0
+    - _SpecSmooth: 0.05
     - _SpecularHighlights: 0
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.018341249, g: 0.018341249, b: 0.018341249, a: 1}
+    - _Color: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
+    - _SColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
+    - _SpecColor: {r: 0, g: 0.54191923, b: 1, a: 1}

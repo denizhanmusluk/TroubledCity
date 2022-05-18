@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2151209085908279002}
   - component: {fileID: 3059486561497829759}
   - component: {fileID: 977718281164563893}
-  - component: {fileID: 4429611828344540544}
   m_Layer: 0
   m_Name: Hospital 1
   m_TagString: Untagged
@@ -91,19 +90,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4429611828344540544
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626206183878001760}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 9.008989, y: 8.947696, z: 5.9381895}
-  m_Center: {x: -0.48038864, y: 4.470816, z: 0.75097656}
 --- !u!1 &2294652723553212014
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,8 +569,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.27, y: 10.860529, z: 7.483785}
-  m_Center: {x: -0, y: 2.9302583, z: -9.466876}
+  m_Size: {x: 8.182854, y: 10.860529, z: 11.285515}
+  m_Center: {x: -0.2445755, y: 2.9302588, z: -3.1029434}
 --- !u!54 &5571374995085510029
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -683,7 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4745098, g: 0.45882353, b: 0.46666667, a: 1}
+  m_Color: {r: 0.2514658, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

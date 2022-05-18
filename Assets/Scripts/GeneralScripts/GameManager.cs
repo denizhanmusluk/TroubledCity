@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver
     {
         //downArrow.gameObject.SetActive(false);
         Application.targetFrameRate = 60;
-        //Globals.moneyAmount = PlayerPrefs.GetInt("money");
+        Globals.moneyAmount = PlayerPrefs.GetInt("money");
         moneyPanel.enabled = true;
 
 

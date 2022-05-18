@@ -18,7 +18,7 @@ public class helpIcon : MonoBehaviour
         {
             counter1 += 5 * Time.deltaTime;
             scaleValue1 = Mathf.Abs(Mathf.Cos(counter1));
-            transform.localScale = new Vector3(1, 1f, 1f) + new Vector3(scaleValue1 / 5f, scaleValue1 / 5f, 0f);
+            transform.localScale = new Vector3(Globals.iconScale, Globals.iconScale, Globals.iconScale) + new Vector3(Globals.iconScale * scaleValue1 / 5f, Globals.iconScale * scaleValue1 / 5f, 0f);
             yield return null;
         }
         transform.localScale = new Vector3(1, 1f, 1f);

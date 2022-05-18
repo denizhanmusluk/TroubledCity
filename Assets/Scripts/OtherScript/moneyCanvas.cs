@@ -11,7 +11,10 @@ public class moneyCanvas : MonoBehaviour
     [SerializeField] GameObject panel;
     [SerializeField] Image money;
     [SerializeField] public int moneyAmount = 0;
+    int moneyAmountPre;
     Vector3 screenPos;
+    bool panelPosActive = false;
+    Vector3 _troublePos;
     void Awake()
     {
         if (Instance == null)
@@ -19,29 +22,69 @@ public class moneyCanvas : MonoBehaviour
             Instance = this;
         }
     }
+    //public void moneySpawn(Vector3 troublePos, int _moneyAmount)
+    //{
+    //    panel.SetActive(true);
+    //    moneyAmount += _moneyAmount;
+    //    screenPos = Camera.main.WorldToScreenPoint(troublePos);
+    //    for (int i = 0; i< _moneyAmount; i++)
+    //    {
+    //        Instantiate(money, new Vector3(screenPos.x, screenPos.y, 0), Quaternion.identity, this.transform);
+    //    }
+
+    //    for (int i = moneyAmount - _moneyAmount; i < moneyAmount; i++)
+    //    {
+    //        StartCoroutine(moneyScattering(transform.GetChild(i + 1).GetComponent<RectTransform>()));
+    //    }
+    //}
     public void moneySpawn(Vector3 troublePos, int _moneyAmount)
     {
         panel.SetActive(true);
+        StartCoroutine(panelPos(troublePos));
+        moneyAmountPre = _moneyAmount;
         moneyAmount += _moneyAmount;
-        screenPos = Camera.main.WorldToScreenPoint(troublePos);
-        for (int i = 0; i< _moneyAmount; i++)
-        {
-            Instantiate(money, new Vector3(screenPos.x, screenPos.y, 0), Quaternion.identity, this.transform);
-        }
+        _troublePos = troublePos;
+    }
+    IEnumerator panelPos(Vector3 troublePos)
+    {
+        panelPosActive = false;
+        yield return null;
+        panelPosActive = true;
 
-        for (int i = moneyAmount - _moneyAmount; i < moneyAmount; i++)
+        while (panelPosActive)
         {
-            StartCoroutine(moneyScattering(transform.GetChild(i + 1).GetComponent<RectTransform>()));
+            panel.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(troublePos);
+            yield return null;
         }
     }
     public void button()
     {
+        screenPos = Camera.main.WorldToScreenPoint(_troublePos);
         for (int i = 0; i < moneyAmount; i++)
         {
-            StartCoroutine(moneyCollect(transform.GetChild(i + 1).GetComponent<RectTransform>()));
+            Instantiate(money, new Vector3(screenPos.x, screenPos.y, 0), Quaternion.identity, this.transform);
         }
+
+        for (int i = moneyAmount - moneyAmountPre; i < moneyAmount; i++)
+        {
+            StartCoroutine(moneyScattering(transform.GetChild(i + 1).GetComponent<RectTransform>()));
+        }
+        StartCoroutine(collecting());
+        panelPosActive = false;
+
         panel.SetActive(false);
     }
+    //public void button()
+    //{
+    //    for (int i = 0; i < moneyAmount; i++)
+    //    {
+    //        StartCoroutine(moneyCollect(transform.GetChild(i + 1).GetComponent<RectTransform>()));
+    //    }
+
+    //    panelPosActive = false;
+
+    //    panel.SetActive(false);
+    //}
     IEnumerator moneyScattering(RectTransform mny)
     {
         float speed = 1000;
@@ -54,6 +97,14 @@ public class moneyCanvas : MonoBehaviour
             yield return null;
         }
         //mny.position = targetScat;
+    }
+    IEnumerator collecting()
+    {
+        yield return new WaitForSeconds(1f);
+        for (int i = 0; i < moneyAmount; i++)
+        {
+            StartCoroutine(moneyCollect(transform.GetChild(i + 1).GetComponent<RectTransform>()));
+        }
     }
     IEnumerator moneyCollect(RectTransform mny)
     {
@@ -68,7 +119,7 @@ public class moneyCanvas : MonoBehaviour
         mny.position = target.position;
         yield return null;
         Destroy(mny.gameObject);
-        GameManager.Instance.MoneyUpdate(50);
+        GameManager.Instance.MoneyUpdate(200);
         moneyAmount = 0;
     }
 }

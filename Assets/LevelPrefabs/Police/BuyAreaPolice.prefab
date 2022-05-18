@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4745098, g: 0.45882353, b: 0.46666667, a: 1}
+  m_Color: {r: 0.2514658, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -169,8 +169,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8.1712265, y: 8.399899, z: 4.415558}
-  m_Center: {x: -0.17713165, y: 4.160574, z: -6.113697}
+  m_Size: {x: 8.1712265, y: 8.399899, z: 15.988361}
+  m_Center: {x: -0.17713165, y: 4.160574, z: -4.2002583}
 --- !u!54 &3932279152785534139
 Rigidbody:
   m_ObjectHideFlags: 0

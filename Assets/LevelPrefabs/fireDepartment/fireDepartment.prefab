@@ -649,13 +649,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aff95df4b2a61e448604a4c8639dc85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipSpeed: 50
+  equipSpeed: 10
   troubleSolutionSpeed: 5
   helpNo: 0
   waterParticle:
   - {fileID: 6498663195289922312}
   - {fileID: 6498663195506945157}
   questionMark: {fileID: 2753579172733680128}
+  policePrefab: {fileID: 6329391237241081351, guid: 5970005b65f78d04faabed20fe8cf77a,
+    type: 3}
+  doctorPrefab: {fileID: 6329391237241081351, guid: ad988e3861f5b744c8b97f2397604828,
+    type: 3}
+  engineerPrefab: {fileID: 0}
 --- !u!114 &8947938354311748207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,6 +715,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 4b1661554fdeaef43a1cecde367580fc, type: 2}
   - {fileID: 2100000, guid: 53bc5538521bc5b4cb4d8a169a4f78ff, type: 2}
   - {fileID: 2100000, guid: 82e2db9d618953a4c9b77aded2f0e806, type: 2}
+  - {fileID: 2100000, guid: 2bade3806e9d6254fac2fe9fc0b50fc0, type: 2}
 --- !u!136 &8947938354311748195
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6563,6 +6569,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8944376434275343554}
     m_Modifications:
+    - target: {fileID: 2369379676349860934, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369379676349860934, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369379676349860934, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2369379676367951726, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
         type: 3}
       propertyPath: m_Name
@@ -6643,6 +6664,36 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2747591974869277955, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2747591974869277955, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2747591974869277955, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852822753831479710, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852822753831479710, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852822753831479710, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d, type: 3}
 --- !u!1 &6498663195506945157 stripped
@@ -6664,6 +6715,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8944376434275343554}
     m_Modifications:
+    - target: {fileID: 2369379676349860934, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369379676349860934, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369379676349860934, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2369379676367951726, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
         type: 3}
       propertyPath: m_Name
@@ -6743,6 +6809,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2747591974869277955, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2747591974869277955, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2747591974869277955, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852822753831479710, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852822753831479710, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852822753831479710, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17eb19d0b0516ee44ba4d7a8cae4f69d, type: 3}

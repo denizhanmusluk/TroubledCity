@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LineDraw : MonoBehaviour
+public class LineDraw : MonoBehaviour,IStartGameObserver
 {
 	public GameObject linePrefab;
 	public LayerMask cantDrawOverLayer;
@@ -19,16 +19,26 @@ public class LineDraw : MonoBehaviour
 	public bool drawing = false;
 	GameObject followObject;
 	int helpNo;
+	bool clickActionActive = false;
 	void Start()
 	{
+		GameManager.Instance.Add_StartObserver(this);
 		cam = Camera.main;
 		cantDrawOverLayerIndex = LayerMask.NameToLayer("CantDrawOver");
+	}
+	public void StartGame()
+    {
+		clickActionActive = true;
+
 	}
 	[SerializeField] GameObject helperTeamTemp;
 	[SerializeField] Material[] lineMaterial;
 	void Update()
 	{
-		clickAction();
+		if (clickActionActive)
+		{
+			clickAction();
+		}
 	}
 	void clickAction()
 	{

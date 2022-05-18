@@ -6,7 +6,7 @@ public class CarSpawner : MonoBehaviour, IStartGameObserver
 {
 
     public GameObject[] carPrefab;
-    public float spawnTime = 4f;
+    public float spawnTime;
     [SerializeField] public List<Transform> target;
     public bool spawnActive = true;
     //GameObject player;
@@ -51,7 +51,6 @@ public class CarSpawner : MonoBehaviour, IStartGameObserver
             //    StartCoroutine(playerDistanceCheck());
             //    break;
             //}
-            yield return new WaitForSeconds(spawnTime);
 
             //if (Vector3.Distance(player.transform.position, transform.position) < 15f)
             //{
@@ -84,6 +83,8 @@ public class CarSpawner : MonoBehaviour, IStartGameObserver
             }
             Globals.population++;
             GameManager.Instance.populationUpdate();
+            yield return new WaitForSeconds(spawnTime);
+
         }
     }
 }

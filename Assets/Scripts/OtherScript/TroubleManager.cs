@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TroubleManager : MonoBehaviour
+public class TroubleManager : MonoBehaviour,IStartGameObserver
 {
     public static TroubleManager Instance;
 
     [SerializeField] Transform[] fireTroublePoints;
     [SerializeField] Transform[] ambulanceTroublePoints;
     [SerializeField] Transform[] policeTroublePoints;
+    [SerializeField] Transform[] repairTroublePoints;
     [SerializeField] GameObject[] troubles;
     bool gameActive = true;
-    public UIdirection uiDir;
+    public UIdirectionManager uiDir;
+    [SerializeField] float troubleSpawnPeriod;
     void Awake()
     {
         if (Instance == null)
@@ -19,9 +21,14 @@ public class TroubleManager : MonoBehaviour
             Instance = this;
         }
     }
-     void Start()
+    void Start()
+    {
+        GameManager.Instance.Add_StartObserver(this);
+    }
+    public void StartGame()
     {
         fireTroubleStart();
+
     }
     public void fireTroubleStart()
     {
@@ -31,13 +38,14 @@ public class TroubleManager : MonoBehaviour
     {
         while (gameActive)
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(troubleSpawnPeriod);
             int selectionPoint = Random.Range(0, fireTroublePoints.Length);
             //int selectionTrouble = Random.Range(0, troubles.Length);
             if (fireTroublePoints[selectionPoint].childCount == 0)
             {
                 var toruble = Instantiate(troubles[0], fireTroublePoints[selectionPoint].position, fireTroublePoints[selectionPoint].rotation, fireTroublePoints[selectionPoint]);
                 uiDir.targetList.Add(toruble.gameObject);
+                uiDir.instIcon(toruble.gameObject,0);
             }
         }
     }
@@ -46,22 +54,31 @@ public class TroubleManager : MonoBehaviour
         if (troubleNum == 1)
         {
             StartCoroutine(ambulanceTroubleSpawn());
-        }   if (troubleNum == 2)
+            troubleSpawnPeriod *= 0.9f;
+        }   
+        if (troubleNum == 2)
         {
             StartCoroutine(policeTroubleSpawn());
+            troubleSpawnPeriod *= 0.85f;
+        }
+        if (troubleNum == 3)
+        {
+            StartCoroutine(repairTroubleSpawn());
+            troubleSpawnPeriod *= 0.8f;
         }
     }
     IEnumerator ambulanceTroubleSpawn()
     {
         while (gameActive)
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(troubleSpawnPeriod);
             int selectionPoint = Random.Range(0, ambulanceTroublePoints.Length);
             //int selectionTrouble = Random.Range(0, troubles.Length);
             if (ambulanceTroublePoints[selectionPoint].childCount == 0)
             {
                 var toruble = Instantiate(troubles[1], ambulanceTroublePoints[selectionPoint].position, ambulanceTroublePoints[selectionPoint].rotation, ambulanceTroublePoints[selectionPoint]);
                 uiDir.targetList.Add(toruble.gameObject);
+                uiDir.instIcon(toruble.gameObject,1);
             }
         }
     }
@@ -69,13 +86,30 @@ public class TroubleManager : MonoBehaviour
     {
         while (gameActive)
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(troubleSpawnPeriod);
             int selectionPoint = Random.Range(0, policeTroublePoints.Length);
             //int selectionTrouble = Random.Range(0, troubles.Length);
             if (policeTroublePoints[selectionPoint].childCount == 0)
             {
                 var toruble = Instantiate(troubles[2], policeTroublePoints[selectionPoint].position, policeTroublePoints[selectionPoint].rotation, policeTroublePoints[selectionPoint]);
                 uiDir.targetList.Add(toruble.gameObject);
+                uiDir.instIcon(toruble.gameObject,2);
+            }
+        }
+    }
+
+    IEnumerator repairTroubleSpawn()
+    {
+        while (gameActive)
+        {
+            yield return new WaitForSeconds(troubleSpawnPeriod);
+            int selectionPoint = Random.Range(0, repairTroublePoints.Length);
+            //int selectionTrouble = Random.Range(0, troubles.Length);
+            if (repairTroublePoints[selectionPoint].childCount == 0)
+            {
+                var toruble = Instantiate(troubles[3], repairTroublePoints[selectionPoint].position, repairTroublePoints[selectionPoint].rotation, repairTroublePoints[selectionPoint]);
+                uiDir.targetList.Add(toruble.gameObject);
+                uiDir.instIcon(toruble.gameObject, 3);
             }
         }
     }

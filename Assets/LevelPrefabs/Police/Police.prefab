@@ -509,6 +509,10 @@ MonoBehaviour:
   helpNo: 2
   waterParticle: []
   questionMark: {fileID: 7057302734240252818}
+  policePrefab: {fileID: 6329391237241081351, guid: 5970005b65f78d04faabed20fe8cf77a,
+    type: 3}
+  doctorPrefab: {fileID: 6329391237241081351, guid: ad988e3861f5b744c8b97f2397604828,
+    type: 3}
 --- !u!114 &7089976903030749941
 MonoBehaviour:
   m_ObjectHideFlags: 0

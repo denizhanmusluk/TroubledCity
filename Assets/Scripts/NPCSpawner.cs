@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPCSpawner : MonoBehaviour,IStartGameObserver
 {
-    //public static NPCSpawner Instance;
+    public static NPCSpawner Instance;
 
     public GameObject[] npcPrefab;
     public float spawnTime = 4f;
@@ -13,10 +13,10 @@ public class NPCSpawner : MonoBehaviour,IStartGameObserver
     //GameObject player;
     private void Awake()
     {
-        //if (Instance == null)
-        //{
-        //    Instance = this;
-        //}
+        if (Instance == null)
+        {
+            Instance = this;
+        }
     }
     private void Start()
     {
@@ -39,7 +39,7 @@ public class NPCSpawner : MonoBehaviour,IStartGameObserver
     }
     IEnumerator SpawnCustomer()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         //player = GameObject.Find("Player");
         while (spawnActive)
@@ -52,7 +52,6 @@ public class NPCSpawner : MonoBehaviour,IStartGameObserver
             //    StartCoroutine(playerDistanceCheck());
             //    break;
             //}
-            yield return new WaitForSeconds( spawnTime );
 
             //if (Vector3.Distance(player.transform.position, transform.position) < 15f)
             //{
@@ -85,6 +84,8 @@ public class NPCSpawner : MonoBehaviour,IStartGameObserver
             }
             Globals.population++;
             GameManager.Instance.populationUpdate();
+            yield return new WaitForSeconds(spawnTime);
+
         }
     }
     //IEnumerator playerDistanceCheck()
