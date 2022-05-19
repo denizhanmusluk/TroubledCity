@@ -19,7 +19,7 @@ public	Camera cam;
 	public bool drawing = false;
 	GameObject followObject;
 	int helpNo;
-public	bool clickActionActive = false;
+private	bool clickActionActive = true;
 	void Start()
 	{
 		GameManager.Instance.Add_StartObserver(this);

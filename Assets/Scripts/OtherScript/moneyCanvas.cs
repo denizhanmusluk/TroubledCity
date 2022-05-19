@@ -8,7 +8,7 @@ public class moneyCanvas : MonoBehaviour
     public static moneyCanvas Instance;
 
     [SerializeField] RectTransform target;
-    [SerializeField] GameObject panel;
+    [SerializeField] GameObject panelPrefab;
     [SerializeField] Image money;
     [SerializeField] public int moneyAmount = 0;
     int moneyAmountPre;
@@ -39,41 +39,46 @@ public class moneyCanvas : MonoBehaviour
     //}
     public void moneySpawn(Vector3 troublePos, int _moneyAmount)
     {
-        panel.SetActive(true);
-        StartCoroutine(panelPos(troublePos));
+        GameObject pnl = Instantiate(panelPrefab, this.transform);
+        //panel.SetActive(true);
+        pnl.GetComponent<moneyPanel>().troublePos = troublePos;
+        pnl.GetComponent<moneyPanel>().moneyAmount = _moneyAmount;
+        pnl.GetComponent<moneyPanel>().target = target;
+
+
         moneyAmountPre = _moneyAmount;
         moneyAmount += _moneyAmount;
         _troublePos = troublePos;
     }
-    IEnumerator panelPos(Vector3 troublePos)
-    {
-        panelPosActive = false;
-        yield return null;
-        panelPosActive = true;
+    //IEnumerator panelPos(Vector3 troublePos)
+    //{
+    //    panelPosActive = false;
+    //    yield return null;
+    //    panelPosActive = true;
 
-        while (panelPosActive)
-        {
-            panel.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(troublePos);
-            yield return null;
-        }
-    }
-    public void button()
-    {
-        screenPos = Camera.main.WorldToScreenPoint(_troublePos);
-        for (int i = 0; i < moneyAmount; i++)
-        {
-            Instantiate(money, new Vector3(screenPos.x, screenPos.y, 0), Quaternion.identity, this.transform);
-        }
+    //    while (panelPosActive)
+    //    {
+    //        panel.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(troublePos);
+    //        yield return null;
+    //    }
+    //}
+    //public void button()
+    //{
+    //    screenPos = Camera.main.WorldToScreenPoint(_troublePos);
+    //    for (int i = 0; i < moneyAmount; i++)
+    //    {
+    //        Instantiate(money, new Vector3(screenPos.x, screenPos.y, 0), Quaternion.identity, this.transform);
+    //    }
 
-        for (int i = moneyAmount - moneyAmountPre; i < moneyAmount; i++)
-        {
-            StartCoroutine(moneyScattering(transform.GetChild(i + 1).GetComponent<RectTransform>()));
-        }
-        StartCoroutine(collecting());
-        panelPosActive = false;
+    //    for (int i = moneyAmount - moneyAmountPre; i < moneyAmount; i++)
+    //    {
+    //        StartCoroutine(moneyScattering(transform.GetChild(i + 1).GetComponent<RectTransform>()));
+    //    }
+    //    StartCoroutine(collecting());
+    //    panelPosActive = false;
 
-        panel.SetActive(false);
-    }
+    //    panel.SetActive(false);
+    //}
     //public void button()
     //{
     //    for (int i = 0; i < moneyAmount; i++)

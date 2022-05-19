@@ -8,7 +8,7 @@ public class HelperTeam : MonoBehaviour
 	[SerializeField] public float troubleSolutionSpeed;
 
 	public int helpNo;
-	bool crash = false;
+	public bool crash = false;
 	Vector3 forceDirection;
 	[SerializeField] GameObject[] waterParticle;
 	GameObject _troubleArea;
@@ -22,7 +22,7 @@ public class HelperTeam : MonoBehaviour
 
 	[SerializeField] GameObject questionMark;
 
-	[SerializeField] GameObject policePrefab, doctorPrefab, engineerPrefab;
+	[SerializeField] GameObject policePrefab, doctorPrefab, engineerPrefab, fireFighterPrefab;
 	private void Start()
 	{
 		questionMark.SetActive(false);
@@ -61,6 +61,8 @@ public class HelperTeam : MonoBehaviour
 	}
 	IEnumerator following(Line currentLine)
 	{
+		crash = false;
+
 		npcHitActive = true;
 		float posNo = 0f;
 		while (currentLine.GetComponent<LineRenderer>().positionCount > posNo)
@@ -123,6 +125,18 @@ public class HelperTeam : MonoBehaviour
 		}
 		npcHitActive = false;
 	}
+	IEnumerator coverOpen()
+    {
+		float counter = 0f;
+        while (counter < 2f)
+        {
+			counter += Time.deltaTime;
+			transform.GetChild(4).transform.localRotation = Quaternion.Euler(-60 * counter, transform.GetChild(4).transform.localEulerAngles.y, transform.GetChild(4).transform.localEulerAngles.z);
+			yield return null;
+        }
+		transform.GetChild(4).transform.localRotation = Quaternion.Euler(-120, transform.GetChild(4).transform.localEulerAngles.y, transform.GetChild(4).transform.localEulerAngles.z);
+
+	}
 	IEnumerator fireExtinguishing()
 	{
 		if (_troubleArea.GetComponent<IHelper>().helpNo == helpNo)
@@ -131,6 +145,7 @@ public class HelperTeam : MonoBehaviour
 			_troubleArea.GetComponent<troubleArea>().iconSizeDown();
 			if (helpNo == 3)
 			{
+				StartCoroutine(coverOpen());
 				GameObject engineer = Instantiate(engineerPrefab, transform.position, Quaternion.identity);
 				engineer.GetComponent<engineer>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform.GetChild(0);
 				engineer.GetComponent<engineer>().point1 = transform.GetChild(0);
@@ -148,6 +163,17 @@ public class HelperTeam : MonoBehaviour
 			{
 				GameObject doctor = Instantiate(doctorPrefab, transform.position, Quaternion.identity);
 				doctor.GetComponent<doctor>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform.GetChild(0);
+
+			}
+			if (helpNo == 0)
+			{
+				GameObject fireFighter = Instantiate(fireFighterPrefab, _troubleArea.transform.position + new Vector3(-2,0,-2), Quaternion.identity);
+				fireFighter.GetComponent<fireFighter>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform;
+				fireFighter.GetComponent<fireFighter>().firstPos = transform.position;
+
+				GameObject fireFighter2 = Instantiate(fireFighterPrefab, _troubleArea.transform.position + new Vector3(2, 0, 2), Quaternion.identity);
+				fireFighter2.GetComponent<fireFighter>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform;
+				fireFighter2.GetComponent<fireFighter>().firstPos = transform.position;
 
 			}
 
@@ -195,6 +221,11 @@ public class HelperTeam : MonoBehaviour
 				waterParticle[i].SetActive(false);
 			}
 			Globals.tutorialFireCam = false;
+			if (helpNo == 3)
+			{
+				transform.GetChild(4).transform.localRotation = Quaternion.Euler(0, transform.GetChild(4).transform.localEulerAngles.y, transform.GetChild(4).transform.localEulerAngles.z);
+
+			}
 		}
 		else
         {

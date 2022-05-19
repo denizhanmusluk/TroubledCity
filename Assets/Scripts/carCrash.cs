@@ -122,12 +122,15 @@ public class carCrash : MonoBehaviour
             //transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(0, transform.localEulerAngles.y, transform.localEulerAngles.z), 100 * Time.deltaTime);
             yield return null;
         }
-        yield return new WaitForSeconds(8f);
         StartCoroutine(carRemove(pos4, pos3, pos2, pos1));
 
     }
     IEnumerator carRemove(Transform pos1, Transform pos2, Transform pos3, Transform pos4)
     {
+        while (!transform.parent.GetComponent<HelperTeam>().helpDrawActive)
+        {
+            yield return null;
+        }
         while (Vector3.Distance(transform.position, pos1.position) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(transform.position, pos1.position, 20 * Time.deltaTime);

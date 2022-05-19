@@ -641,7 +641,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4276364900745844801
 MonoBehaviour:
@@ -5376,7 +5376,7 @@ Transform:
   m_GameObject: {fileID: 5301781673192885909}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.030095, z: 1}
+  m_LocalScale: {x: 1.5, y: 0.030095, z: 1.5}
   m_Children: []
   m_Father: {fileID: 4276364900745844813}
   m_RootOrder: 2
@@ -5691,6 +5691,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750185399925712896, guid: 6312c3a58a625974eb8429f675d6ffa2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750185399925712896, guid: 6312c3a58a625974eb8429f675d6ffa2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750185399925712896, guid: 6312c3a58a625974eb8429f675d6ffa2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6312c3a58a625974eb8429f675d6ffa2, type: 3}

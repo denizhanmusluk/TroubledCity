@@ -54,7 +54,7 @@ public class engineer : MonoBehaviour
     }
     void moveTarget()
     {
-        if (Vector3.Distance(transform.position, targetGuilty.position) < 2.5f)
+        if (Vector3.Distance(transform.position, targetGuilty.position) < 4f)
         {
             //anim.SetBool("gun", true);
             agent.SetDestination(transform.position);

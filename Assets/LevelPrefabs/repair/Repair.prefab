@@ -9933,7 +9933,7 @@ Transform:
   m_GameObject: {fileID: 963379706943140565}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2, y: 0, z: 9.13}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 963379706943387797}
   - {fileID: 963379706943389003}
@@ -19306,7 +19306,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299342707571970515}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.65, y: 0, z: 4.46}
+  m_LocalPosition: {x: 11.27, y: 0, z: 6.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3293457102615815514}
@@ -19419,13 +19419,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1749640067309776112}
-  m_LocalRotation: {x: -0.87103254, y: -0, z: 0.000000029802326, w: 0.4912254}
+  m_LocalRotation: {x: 0, y: -0.0000001872535, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0.98, z: -2.67}
   m_LocalScale: {x: 1, y: 2.4859, z: 1}
   m_Children: []
   m_Father: {fileID: 1749640067310006482}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: -121.158, y: -0.000015258789, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0.000015258789, z: 0}
 --- !u!33 &1749640067312906480
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -19648,7 +19648,6 @@ MonoBehaviour:
   currentLine: {fileID: 0}
   cam: {fileID: 0}
   drawing: 0
-  clickActionActive: 0
   helperTeamTemp: {fileID: 0}
   lineMaterial:
   - {fileID: 2100000, guid: 4b1661554fdeaef43a1cecde367580fc, type: 2}
@@ -19683,6 +19682,7 @@ MonoBehaviour:
   equipSpeed: 0
   troubleSolutionSpeed: 0
   helpNo: 3
+  crash: 0
   waterParticle: []
   questionMark: {fileID: 8760261744781570348}
   policePrefab: {fileID: 6329391237241081351, guid: 5970005b65f78d04faabed20fe8cf77a,
@@ -19690,6 +19690,8 @@ MonoBehaviour:
   doctorPrefab: {fileID: 6329391237241081351, guid: ad988e3861f5b744c8b97f2397604828,
     type: 3}
   engineerPrefab: {fileID: 6329391237241081351, guid: 36c5282a9abd8be4e95658c5f2b6931f,
+    type: 3}
+  fireFighterPrefab: {fileID: 6329391237241081351, guid: 70a100c7f335e3e46bd73451c5b8bab4,
     type: 3}
 --- !u!1 &1749640067309776116
 GameObject:
@@ -20204,7 +20206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2227706727154384125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.67, y: 0, z: 4.46}
+  m_LocalPosition: {x: 0.27, y: 0, z: 6.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1749640067310006482}
@@ -20623,13 +20625,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3293457102615394680}
-  m_LocalRotation: {x: -0.87103254, y: -0, z: 0.000000029802326, w: 0.4912254}
+  m_LocalRotation: {x: 0, y: -0.0000001872535, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0.98, z: -2.67}
   m_LocalScale: {x: 1, y: 2.4859, z: 1}
   m_Children: []
   m_Father: {fileID: 3293457102615815514}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: -121.158, y: -0.000015258789, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0.000015258789, z: 0}
 --- !u!33 &3293457102614521208
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20817,6 +20819,7 @@ MonoBehaviour:
   equipSpeed: 0
   troubleSolutionSpeed: 0
   helpNo: 3
+  crash: 0
   waterParticle: []
   questionMark: {fileID: 5432963949130374183}
   policePrefab: {fileID: 6329391237241081351, guid: 5970005b65f78d04faabed20fe8cf77a,
@@ -20824,6 +20827,8 @@ MonoBehaviour:
   doctorPrefab: {fileID: 6329391237241081351, guid: ad988e3861f5b744c8b97f2397604828,
     type: 3}
   engineerPrefab: {fileID: 6329391237241081351, guid: 36c5282a9abd8be4e95658c5f2b6931f,
+    type: 3}
+  fireFighterPrefab: {fileID: 6329391237241081351, guid: 70a100c7f335e3e46bd73451c5b8bab4,
     type: 3}
 --- !u!114 &6377914340247818751
 MonoBehaviour:
@@ -20875,7 +20880,6 @@ MonoBehaviour:
   currentLine: {fileID: 0}
   cam: {fileID: 0}
   drawing: 0
-  clickActionActive: 0
   helperTeamTemp: {fileID: 0}
   lineMaterial:
   - {fileID: 2100000, guid: 4b1661554fdeaef43a1cecde367580fc, type: 2}
@@ -21637,7 +21641,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4535805608494747625}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.24, y: 0, z: 4.46}
+  m_LocalPosition: {x: -0.24, y: 0, z: 6.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8375611429472764936}
@@ -36416,7 +36420,7 @@ Transform:
   m_GameObject: {fileID: 7183114333205007846}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6, y: 0, z: 9.13}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 7183114333205284774}
   - {fileID: 7183114333205283448}
@@ -41657,7 +41661,6 @@ MonoBehaviour:
   currentLine: {fileID: 0}
   cam: {fileID: 0}
   drawing: 0
-  clickActionActive: 0
   helperTeamTemp: {fileID: 0}
   lineMaterial:
   - {fileID: 2100000, guid: 4b1661554fdeaef43a1cecde367580fc, type: 2}
@@ -41679,6 +41682,7 @@ MonoBehaviour:
   equipSpeed: 0
   troubleSolutionSpeed: 0
   helpNo: 3
+  crash: 0
   waterParticle: []
   questionMark: {fileID: 5652773499500498638}
   policePrefab: {fileID: 6329391237241081351, guid: 5970005b65f78d04faabed20fe8cf77a,
@@ -41686,6 +41690,8 @@ MonoBehaviour:
   doctorPrefab: {fileID: 6329391237241081351, guid: ad988e3861f5b744c8b97f2397604828,
     type: 3}
   engineerPrefab: {fileID: 6329391237241081351, guid: 36c5282a9abd8be4e95658c5f2b6931f,
+    type: 3}
+  fireFighterPrefab: {fileID: 6329391237241081351, guid: 70a100c7f335e3e46bd73451c5b8bab4,
     type: 3}
 --- !u!114 &8362347888684849249
 MonoBehaviour:
@@ -41725,13 +41731,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8375611429472606250}
-  m_LocalRotation: {x: -0.87103254, y: -0, z: 0.000000029802326, w: 0.4912254}
+  m_LocalRotation: {x: 0, y: -0.0000001872535, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0.98, z: -2.67}
   m_LocalScale: {x: 1, y: 2.4859, z: 1}
   m_Children: []
   m_Father: {fileID: 8375611429472764936}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: -121.158, y: -0.000015258789, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0.000015258789, z: 0}
 --- !u!33 &8375611429471470634
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -46767,7 +46773,7 @@ Transform:
   m_GameObject: {fileID: 9215821166776546080}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2, y: 0, z: 9.13}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 9215821166776269152}
   - {fileID: 9215821166776270014}
@@ -60913,12 +60919,12 @@ PrefabInstance:
     - target: {fileID: 5190448757087777371, guid: c7f315628abae6440a68ad150849731d,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5190448757087777371, guid: c7f315628abae6440a68ad150849731d,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9173902130010371939, guid: c7f315628abae6440a68ad150849731d,
         type: 3}
@@ -61193,12 +61199,12 @@ PrefabInstance:
     - target: {fileID: 5190448757087777371, guid: c7f315628abae6440a68ad150849731d,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5190448757087777371, guid: c7f315628abae6440a68ad150849731d,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9173902130010371939, guid: c7f315628abae6440a68ad150849731d,
         type: 3}
@@ -61283,12 +61289,12 @@ PrefabInstance:
     - target: {fileID: 5190448757087777371, guid: c7f315628abae6440a68ad150849731d,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5190448757087777371, guid: c7f315628abae6440a68ad150849731d,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9173902130010371939, guid: c7f315628abae6440a68ad150849731d,
         type: 3}
