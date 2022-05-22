@@ -59,7 +59,7 @@ public class doctor : MonoBehaviour
     {
         if (targetGuilty != null)
         {
-            if (Vector3.Distance(transform.position, targetNpcHips.position) < 1)
+            if (Vector3.Distance(transform.position, targetNpcHips.position) < 5f)
             {
                 anim.SetBool("aid", true);
                 //destination.transform.parent.GetComponent<Build>().customerList.Remove(this.gameObject);
@@ -69,7 +69,7 @@ public class doctor : MonoBehaviour
             }
             else
             {
-                agent.SetDestination(targetNpcHips.position);
+                agent.SetDestination(new Vector3(targetNpcHips.position.x, transform.position.y, targetNpcHips.position.z));
                 anim.SetBool("aid", false);
             }
         }

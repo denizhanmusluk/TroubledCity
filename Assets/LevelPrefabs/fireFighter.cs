@@ -13,7 +13,7 @@ public class fireFighter : MonoBehaviour
     public enum States { idle, moveTarget, aid, firstMove }
     public States currentSelection;
     Animator anim;
- public   Vector3 firstPos;
+ public   Transform firstPos;
     float gunCounter = 0f;
 
     void Start()
@@ -58,7 +58,8 @@ public class fireFighter : MonoBehaviour
     {
         if (targetGuilty != null)
         {
-            if (Vector3.Distance(transform.position, targetGuilty.position) < 18)
+
+            if (Vector3.Distance(transform.position, targetGuilty.transform.parent.position) < 3f)
             {
                 anim.SetBool("aid", true);
                 //destination.transform.parent.GetComponent<Build>().customerList.Remove(this.gameObject);
@@ -68,7 +69,7 @@ public class fireFighter : MonoBehaviour
             }
             else
             {
-                agent.SetDestination(targetGuilty.position);
+                agent.SetDestination(targetGuilty.transform.parent.position);
                 anim.SetBool("aid", false);
             }
         }
@@ -80,7 +81,7 @@ public class fireFighter : MonoBehaviour
     }
     void firstMoving()
     {
-        if (Vector3.Distance(transform.position, firstPos) < 0.5f)
+        if (Vector3.Distance(transform.position, firstPos.position) < 5f)
         {
             //destination.transform.parent.GetComponent<Build>().customerList.Remove(this.gameObject);
             agent.SetDestination(transform.position);
@@ -88,8 +89,9 @@ public class fireFighter : MonoBehaviour
         }
         else
         {
-            agent.SetDestination(firstPos);
+            agent.SetDestination(firstPos.position);
             anim.SetBool("aid", false);
+
         }
     }
     void gun()
@@ -104,7 +106,7 @@ public class fireFighter : MonoBehaviour
         {
             gunCounter += Time.deltaTime;
             transform.LookAt(targetGuilty);
-            if (gunCounter > 4f)
+            if (gunCounter > 2.5f)
             {
                 gunCounter = 0;
                 currentSelection = States.firstMove;

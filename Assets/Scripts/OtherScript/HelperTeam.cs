@@ -11,7 +11,7 @@ public class HelperTeam : MonoBehaviour
 	public bool crash = false;
 	Vector3 forceDirection;
 	[SerializeField] GameObject[] waterParticle;
-	GameObject _troubleArea;
+[SerializeField]	GameObject _troubleArea;
 	Line _currentLine;
 	int currentCrashNode;
 	Vector3 firstPos;
@@ -54,8 +54,9 @@ public class HelperTeam : MonoBehaviour
 	{
 		helpDrawActive = false;
 		_currentLine = currentLine;
-		StartCoroutine(following(currentLine));
 		_troubleArea = troubleArea;
+		StartCoroutine(following(currentLine));
+
 		gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
 		//GetComponent<LinesDrawer>().enabled = false;
 	}
@@ -74,7 +75,14 @@ public class HelperTeam : MonoBehaviour
 				currentCrashNode = (int)posNo;
 				break;
 			}
-			transform.position = Vector3.MoveTowards(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition((int)posNo), equipSpeed * Time.deltaTime);
+            if (_troubleArea == null)
+            {
+                currentCrashNode = (int)posNo;
+                StartCoroutine(reMove(currentCrashNode));
+
+                break;
+            }
+            transform.position = Vector3.MoveTowards(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition((int)posNo), equipSpeed * Time.deltaTime);
 			if (posNo + 1 < currentLine.GetComponent<LineRenderer>().positionCount)
 			{
 				Vector3 dir = (currentLine.GetComponent<LineRenderer>().GetPosition((int)posNo + 1) - transform.position);
@@ -86,7 +94,7 @@ public class HelperTeam : MonoBehaviour
 				Quaternion newRot = Quaternion.Euler(0, targetAngle, 0);
 
 
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, 500 * Time.deltaTime);
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, equipSpeed* 6f * Time.deltaTime);
 			}
 			else
 			{
@@ -99,13 +107,13 @@ public class HelperTeam : MonoBehaviour
 				Quaternion newRot = Quaternion.Euler(0, targetAngle, 0);
 
 
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, 800 * Time.deltaTime);
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, equipSpeed * 6f  * Time.deltaTime);
 			}
 			while (Vector3.Distance(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition((int)posNo)) < 5f && posNo < currentLine.GetComponent<LineRenderer>().positionCount - 1)
 			{
 				posNo += 1f;
 			}
-			posNo += Time.deltaTime * 2;
+			posNo += Time.deltaTime * equipSpeed/12.5f;
 			yield return null;
 		}
 		while (Vector3.Distance(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition(currentLine.GetComponent<LineRenderer>().positionCount - 1)) > 1f)
@@ -116,12 +124,18 @@ public class HelperTeam : MonoBehaviour
 				//crashCar();
 				break;
 			}
-			transform.position = Vector3.MoveTowards(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition(currentLine.GetComponent<LineRenderer>().positionCount - 1), equipSpeed * Time.deltaTime);
+            if (_troubleArea == null)
+            {
+		
+				break;
+            }
+            transform.position = Vector3.MoveTowards(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition(currentLine.GetComponent<LineRenderer>().positionCount - 1), equipSpeed * Time.deltaTime);
 			yield return null;
 		}
 		if (Vector3.Distance(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition(currentLine.GetComponent<LineRenderer>().positionCount - 1)) <= 1f)
 		{
-			StartCoroutine(fireExtinguishing());
+			if (_troubleArea != null)
+				StartCoroutine(fireExtinguishing());
 		}
 		npcHitActive = false;
 	}
@@ -141,6 +155,7 @@ public class HelperTeam : MonoBehaviour
 	{
 		if (_troubleArea.GetComponent<IHelper>().helpNo == helpNo)
 		{
+			_troubleArea.GetComponent<IHelper>().helpNo = -1;
 			Globals.tutorialFireCam = true;
 			_troubleArea.GetComponent<troubleArea>().iconSizeDown();
 			if (helpNo == 3)
@@ -155,25 +170,30 @@ public class HelperTeam : MonoBehaviour
 			}
 			if (helpNo == 2)
             {
-				GameObject police = Instantiate(policePrefab, transform.position, Quaternion.identity);
-				police.GetComponent<police>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform.GetChild(0);
-
+				if (_troubleArea.GetComponent<troubleArea>().fireParticle.transform.childCount > 0)
+				{
+					GameObject police = Instantiate(policePrefab, transform.position, Quaternion.identity);
+					police.GetComponent<police>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform.GetChild(0);
+				}
             }
 			if (helpNo == 1)
 			{
-				GameObject doctor = Instantiate(doctorPrefab, transform.position, Quaternion.identity);
-				doctor.GetComponent<doctor>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform.GetChild(0);
+				//GameObject doctor = Instantiate(doctorPrefab, transform.position, Quaternion.identity);
+				//doctor.GetComponent<doctor>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform.GetChild(0);
+				StartCoroutine(doctorSpawn());
+
 
 			}
 			if (helpNo == 0)
 			{
-				GameObject fireFighter = Instantiate(fireFighterPrefab, _troubleArea.transform.position + new Vector3(-2,0,-2), Quaternion.identity);
-				fireFighter.GetComponent<fireFighter>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform;
-				fireFighter.GetComponent<fireFighter>().firstPos = transform.position;
+				StartCoroutine(fireFigterSpawn());
+				//GameObject fireFighter = Instantiate(fireFighterPrefab, new Vector3(transform.position.x, -76.26f, transform.position.z)+ transform.forward * 2 + new Vector3(transform.right.x,0, transform.right.x) * 4, Quaternion.identity);
+				//fireFighter.GetComponent<fireFighter>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform;
+				//fireFighter.GetComponent<fireFighter>().firstPos = transform;
 
-				GameObject fireFighter2 = Instantiate(fireFighterPrefab, _troubleArea.transform.position + new Vector3(2, 0, 2), Quaternion.identity);
-				fireFighter2.GetComponent<fireFighter>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform;
-				fireFighter2.GetComponent<fireFighter>().firstPos = transform.position;
+				//GameObject fireFighter2 = Instantiate(fireFighterPrefab, new Vector3(transform.position.x, -76.26f, transform.position.z) + transform.forward * 2 - new Vector3(transform.right.x, 0, transform.right.x)* 4, Quaternion.identity);
+				//fireFighter2.GetComponent<fireFighter>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform;
+				//fireFighter2.GetComponent<fireFighter>().firstPos = transform;
 
 			}
 
@@ -239,6 +259,23 @@ public class HelperTeam : MonoBehaviour
 		//gameObject.layer = LayerMask.NameToLayer("Default");
 
 	}
+	IEnumerator doctorSpawn()
+	{
+		yield return new WaitForSeconds(0.5f);
+		GameObject doctor = Instantiate(doctorPrefab, new Vector3(transform.position.x, -76.26f, transform.position.z) + new Vector3(transform.right.x, 0, transform.right.x) * 8, Quaternion.identity);
+		doctor.GetComponent<doctor>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform.GetChild(0);
+	}
+	IEnumerator fireFigterSpawn()
+    {
+		yield return new WaitForSeconds(0.5f);
+		GameObject fireFighter = Instantiate(fireFighterPrefab, new Vector3(transform.position.x, -76.26f, transform.position.z) + new Vector3(transform.right.x, 0, transform.right.x) * 8, Quaternion.identity);
+		fireFighter.GetComponent<fireFighter>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform;
+		fireFighter.GetComponent<fireFighter>().firstPos = transform;
+
+		GameObject fireFighter2 = Instantiate(fireFighterPrefab, new Vector3(transform.position.x, -76.26f, transform.position.z) - new Vector3(transform.right.x, 0, transform.right.x) * 8, Quaternion.identity);
+		fireFighter2.GetComponent<fireFighter>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform;
+		fireFighter2.GetComponent<fireFighter>().firstPos = transform;
+	}
 	IEnumerator reMove(int startNode)
 	{
 		float posNo = startNode;
@@ -264,7 +301,7 @@ public class HelperTeam : MonoBehaviour
 				Quaternion newRot = Quaternion.Euler(0, targetAngle, 0);
 
 
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, 500 * Time.deltaTime);
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, equipSpeed * 6f * Time.deltaTime);
 				//followObject.transform.rotation = Quaternion.Euler(followObject.transform.eulerAngles.x, Mathf.Atan(dir.z/dir.x) *180/Mathf.PI , followObject.transform.eulerAngles.z);
 			}
 			else
@@ -278,27 +315,27 @@ public class HelperTeam : MonoBehaviour
 				Quaternion newRot = Quaternion.Euler(0, targetAngle, 0);
 
 
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, 800 * Time.deltaTime);
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, equipSpeed * 6f * Time.deltaTime);
 			}
 			//followObject.transform.position = currentLine.GetComponent<LineRenderer>().GetPosition(posNo);
-			while (Vector3.Distance(transform.position, _currentLine.GetComponent<LineRenderer>().GetPosition((int)posNo)) < 5f && posNo > 1)
+			while (Vector3.Distance(transform.position, _currentLine.GetComponent<LineRenderer>().GetPosition((int)posNo)) < 10f && posNo > 1)
 			{
 				posNo -= 1f;
 			}
-			posNo -= Time.deltaTime * 30;
+			posNo -= Time.deltaTime * equipSpeed / 12.5f; 
 			yield return null;
 		}
 		while (Vector3.Distance(transform.position, _currentLine.GetComponent<LineRenderer>().GetPosition(0)) > 1f)
 		{
 
-			transform.position = Vector3.MoveTowards(transform.position, _currentLine.GetComponent<LineRenderer>().GetPosition(0), equipSpeed * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, _currentLine.GetComponent<LineRenderer>().GetPosition(0), equipSpeed * 6f * Time.deltaTime);
 			yield return null;
 		}
 		while (Vector3.Distance(transform.position, firstPos) > 0.1f)
 		{
 
-			transform.position = Vector3.MoveTowards(transform.position, firstPos, 50 * Time.deltaTime);
-			transform.rotation = Quaternion.RotateTowards(transform.rotation, firstRot, 1500 * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, firstPos, equipSpeed * Time.deltaTime);
+			transform.rotation = Quaternion.RotateTowards(transform.rotation, firstRot, equipSpeed * 25 * Time.deltaTime);
 			yield return null;
 		}
 		StartCoroutine(lineDestroy());
@@ -313,6 +350,7 @@ public class HelperTeam : MonoBehaviour
 			forceDirection = (transform.position - collision.transform.position).normalized;
 			collision.transform.GetComponent<Vehicle>().currentSelection = Vehicle.States.stopMove;
 			//transform.GetComponent<Rigidbody>().AddForce(transform.up + forceDirection * 500);
+			collision.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 			collision.transform.GetComponent<Rigidbody>().AddForce(transform.up * 1500 - forceDirection * 1200);
 		}
 		if (collision.transform.GetComponent<HelperTeam>() != null)

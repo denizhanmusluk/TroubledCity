@@ -2347,7 +2347,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6329391237241081351}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1372625422
   m_Radius: 0.2
   m_Speed: 20
   m_Acceleration: 25
@@ -2388,6 +2388,10 @@ MonoBehaviour:
   agent: {fileID: 3454684911241897830}
   targetGuilty: {fileID: 6673581925460464829}
   currentSelection: 0
+  point1: {fileID: 0}
+  point2: {fileID: 0}
+  point3: {fileID: 0}
+  point4: {fileID: 0}
 --- !u!1 &6382111013520758935
 GameObject:
   m_ObjectHideFlags: 0

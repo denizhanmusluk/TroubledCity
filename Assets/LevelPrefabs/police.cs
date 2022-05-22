@@ -57,7 +57,7 @@ public class police : MonoBehaviour
     {
         if (targetGuilty != null)
         {
-            if (Vector3.Distance(transform.position, targetGuilty.position) < 20)
+            if (Vector3.Distance(transform.position, targetGuilty.position) < 10f)
             {
                 anim.SetBool("gun", true);
                 //destination.transform.parent.GetComponent<Build>().customerList.Remove(this.gameObject);

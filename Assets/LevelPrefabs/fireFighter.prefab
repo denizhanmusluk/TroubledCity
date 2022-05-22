@@ -2347,12 +2347,12 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6329391237241081351}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1372625422
   m_Radius: 0.2
-  m_Speed: 20
-  m_Acceleration: 25
+  m_Speed: 25
+  m_Acceleration: 20
   avoidancePriority: 50
-  m_AngularSpeed: 200
+  m_AngularSpeed: 250
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -2389,6 +2389,7 @@ MonoBehaviour:
   targetGuilty: {fileID: 6673581925460464829}
   gunParticle: {fileID: 3365725327612046391}
   currentSelection: 0
+  firstPos: {fileID: 0}
 --- !u!1 &6382111013520758935
 GameObject:
   m_ObjectHideFlags: 0

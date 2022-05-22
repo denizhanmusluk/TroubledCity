@@ -98,7 +98,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void equipCountUpgradeButton()
     {
-        if (Globals.moneyAmount >= helperCenter.costEquipCountUpgrade[helperCenter.levelEquipCount])
+        if (Globals.moneyAmount >= helperCenter.costEquipCountUpgrade[helperCenter.levelEquipCount] && helperCenter.levelEquipCount < 2)
         {
             GameManager.Instance.MoneyUpdate(-helperCenter.costEquipCountUpgrade[helperCenter.levelEquipCount]);
 
@@ -112,7 +112,7 @@ public class UpgradeManager : MonoBehaviour
     }
     public void equipSpeedUpgradeButton()
     {
-        if (Globals.moneyAmount >= helperCenter.costEquipSpeedUpgrade[helperCenter.levelEquipSpeed])
+        if (Globals.moneyAmount >= helperCenter.costEquipSpeedUpgrade[helperCenter.levelEquipSpeed] && helperCenter.levelEquipSpeed < 2)
         {
             GameManager.Instance.MoneyUpdate(-helperCenter.costEquipSpeedUpgrade[helperCenter.levelEquipSpeed]);
 
@@ -125,7 +125,7 @@ public class UpgradeManager : MonoBehaviour
     }
     public void troubleSolutionSpeedUpgradeButton()
     {
-        if (Globals.moneyAmount >= helperCenter.costTroubleSolutionSpeedUpgrade[helperCenter.levelTroubleSolutionSpeed])
+        if (Globals.moneyAmount >= helperCenter.costTroubleSolutionSpeedUpgrade[helperCenter.levelTroubleSolutionSpeed] && helperCenter.levelTroubleSolutionSpeed < 2)
         {
             GameManager.Instance.MoneyUpdate(-helperCenter.costTroubleSolutionSpeedUpgrade[helperCenter.levelTroubleSolutionSpeed]);
 

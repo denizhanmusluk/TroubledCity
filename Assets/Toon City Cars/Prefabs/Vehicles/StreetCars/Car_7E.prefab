@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 7302787355380450248}
   - component: {fileID: -2831980030664182069}
   - component: {fileID: -8893464651331857877}
-  - component: {fileID: 8172662933807387659}
+  - component: {fileID: 2108730805297133166}
   m_Layer: 0
   m_Name: Car_7E
   m_TagString: Untagged
@@ -269,12 +269,12 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000013206033564}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1372625422
   m_Radius: 2.45
   m_Speed: 15
   m_Acceleration: 15
   avoidancePriority: 50
-  m_AngularSpeed: 250
+  m_AngularSpeed: 300
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -297,10 +297,10 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
---- !u!65 &8172662933807387659
-BoxCollider:
+--- !u!136 &2108730805297133166
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -309,9 +309,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.634387, y: 1.8692011, z: 3.76}
-  m_Center: {x: 0, y: 0.93736, z: 0.08194622}
+  m_Radius: 0.84
+  m_Height: 3.97
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.9, z: -0.038209558}
 --- !u!1 &1000013299838402
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class carCrash : MonoBehaviour
     [SerializeField] GameObject smokeParticle;
     void Start()
     {
-        destination = SpawnManager.Instance.transform.GetChild(0).transform;
+        destination = SpawnManager.Instance.transform.parent.GetChild(0).GetChild(0).transform;
 
         anim = GetComponent<Animator>();
         currentSelection = States.moveTarget;
@@ -21,7 +21,7 @@ public class carCrash : MonoBehaviour
     }
     IEnumerator startDelay()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         Vector3 forceDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
 
 

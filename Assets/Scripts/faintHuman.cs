@@ -19,7 +19,7 @@ public class faintHuman : MonoBehaviour
     }
     IEnumerator startDelay()
     {
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(4f);
         GetComponent<Ragdoll>().RagdollActivate(true);
     }
     // Update is called once per frame
@@ -49,7 +49,7 @@ public class faintHuman : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         GetComponent<Ragdoll>().RagdollActivate(false);
-        destination = SpawnManager.Instance.transform.GetChild(0).transform;
+        destination = SpawnManager.Instance.transform.parent.GetChild(0).GetChild(0).transform;
         currentSelection = States.moveTarget;
 
     }

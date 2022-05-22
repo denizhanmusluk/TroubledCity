@@ -26,6 +26,9 @@ public class helperCenter : MonoBehaviour
 
     void Start()
     {
+        levelEquipCount= PlayerPrefs.GetInt(transform.name+ "levelEquipCount");
+        levelEquipSpeed= PlayerPrefs.GetInt(transform.name+ "levelEquipSpeed");
+        levelTroubleSolutionSpeed= PlayerPrefs.GetInt(transform.name+ "levelTroubleSolutionSpeed");
         equipCountUpgradeSet();
         equipSpeedUpgradeSet();
         troubleSolutionSpeedUpgradeSet();
@@ -35,7 +38,9 @@ public class helperCenter : MonoBehaviour
     public void equipCountUpgradeSet()
     {
         currentEquipCount = equipCount[levelEquipCount];
-        for(int i = 0;i< currentEquipCount; i++)
+        PlayerPrefs.SetInt(transform.name + "levelEquipCount", levelEquipCount);
+
+        for (int i = 0;i< currentEquipCount; i++)
         {
             equip[i].SetActive(true);
         }
@@ -46,6 +51,8 @@ public class helperCenter : MonoBehaviour
     public void equipSpeedUpgradeSet()
     {
         currentEquipSpeed = equipSpeed[levelEquipSpeed];
+        PlayerPrefs.SetInt(transform.name + "levelEquipSpeed", levelEquipSpeed);
+
         foreach (var helperTeam in GetComponentsInChildren<HelperTeam>())
         {
             helperTeam.equipSpeed = currentEquipSpeed;
@@ -55,6 +62,8 @@ public class helperCenter : MonoBehaviour
     public void troubleSolutionSpeedUpgradeSet()
     {
         currentTroubleSolutionSpeed = troubleSolutionSpeed[levelTroubleSolutionSpeed];
+        PlayerPrefs.SetInt(transform.name + "levelTroubleSolutionSpeed", levelTroubleSolutionSpeed);
+
         foreach (var helperTeam in GetComponentsInChildren<HelperTeam>())
         {
             helperTeam.troubleSolutionSpeed = currentTroubleSolutionSpeed;
