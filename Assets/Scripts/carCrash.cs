@@ -21,7 +21,7 @@ public class carCrash : MonoBehaviour
     }
     IEnumerator startDelay()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         Vector3 forceDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
 
 
@@ -29,7 +29,7 @@ public class carCrash : MonoBehaviour
         currentSelection = States.idle;
         StartCoroutine(fireUp(smokeParticle.transform));
         yield return null;
-        GetComponent<Rigidbody>().AddForce(transform.up * 800 + transform.forward * 400);
+        GetComponent<Rigidbody>().AddForce(transform.up * 600 + transform.forward * 400);
         yield return new WaitForSeconds(4f);
         transform.GetComponent<Rigidbody>().isKinematic = true;
         transform.GetComponent<Collider>().enabled = false;
@@ -92,14 +92,14 @@ public class carCrash : MonoBehaviour
     {
         while (Vector3.Distance(transform.position,pos1.position) > 0.1f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, pos1.position, 20 * Time.deltaTime);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot(pos1), 500 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, pos1.position, 40 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot(pos1), 900 * Time.deltaTime);
             yield return null;
         }
         while (Vector3.Distance(transform.position, pos2.position) > 0.1f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, pos2.position, 20 * Time.deltaTime);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot(pos2), 500 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, pos2.position, 40 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot(pos2), 900 * Time.deltaTime);
 
             //transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(0, transform.localEulerAngles.y, transform.localEulerAngles.z), 100 * Time.deltaTime);
             yield return null;
@@ -107,8 +107,8 @@ public class carCrash : MonoBehaviour
 
         while (Vector3.Distance(transform.position, pos3.position) > 0.1f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, pos3.position, 20 * Time.deltaTime);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot(pos3), 500 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, pos3.position, 40 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot(pos3), 900 * Time.deltaTime);
 
             //transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(0, transform.localEulerAngles.y, transform.localEulerAngles.z), 100 * Time.deltaTime);
             yield return null;
@@ -116,8 +116,8 @@ public class carCrash : MonoBehaviour
 
         while (Vector3.Distance(transform.position, pos4.position) > 0.1f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, pos4.position, 20 * Time.deltaTime);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot(pos4), 500 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, pos4.position, 40 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot(pos4), 900 * Time.deltaTime);
 
             //transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(0, transform.localEulerAngles.y, transform.localEulerAngles.z), 100 * Time.deltaTime);
             yield return null;
@@ -131,6 +131,8 @@ public class carCrash : MonoBehaviour
         {
             yield return null;
         }
+        transform.parent = null;
+
         while (Vector3.Distance(transform.position, pos1.position) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(transform.position, pos1.position, 20 * Time.deltaTime);
@@ -153,6 +155,7 @@ public class carCrash : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, pos4.position, 20 * Time.deltaTime);
             yield return null;
         }
+
         yield return new WaitForSeconds(2f);
         Destroy(this.gameObject);
     }

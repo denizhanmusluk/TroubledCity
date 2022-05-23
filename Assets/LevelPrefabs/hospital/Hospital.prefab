@@ -562,6 +562,11 @@ PrefabInstance:
       propertyPath: lineMaterial.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: 2bade3806e9d6254fac2fe9fc0b50fc0, type: 2}
+    - target: {fileID: 6385480800098490438, guid: 9e8a93eeab5699c4eb88babd28d6780c,
+        type: 3}
+      propertyPath: lineParticlePrefab
+      value: 
+      objectReference: {fileID: 189228, guid: d508484099443d04c96e6d2dafe05fa3, type: 3}
     - target: {fileID: 6385480800098490456, guid: 9e8a93eeab5699c4eb88babd28d6780c,
         type: 3}
       propertyPath: engineerPrefab
@@ -991,6 +996,11 @@ PrefabInstance:
       propertyPath: lineMaterial.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: 2bade3806e9d6254fac2fe9fc0b50fc0, type: 2}
+    - target: {fileID: 6385480800098490438, guid: 9e8a93eeab5699c4eb88babd28d6780c,
+        type: 3}
+      propertyPath: lineParticlePrefab
+      value: 
+      objectReference: {fileID: 189228, guid: d508484099443d04c96e6d2dafe05fa3, type: 3}
     - target: {fileID: 6385480800098490456, guid: 9e8a93eeab5699c4eb88babd28d6780c,
         type: 3}
       propertyPath: engineerPrefab
@@ -1315,6 +1325,11 @@ PrefabInstance:
       propertyPath: lineMaterial.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: 2bade3806e9d6254fac2fe9fc0b50fc0, type: 2}
+    - target: {fileID: 6385480800098490438, guid: 9e8a93eeab5699c4eb88babd28d6780c,
+        type: 3}
+      propertyPath: lineParticlePrefab
+      value: 
+      objectReference: {fileID: 189228, guid: d508484099443d04c96e6d2dafe05fa3, type: 3}
     - target: {fileID: 6385480800098490456, guid: 9e8a93eeab5699c4eb88babd28d6780c,
         type: 3}
       propertyPath: engineerPrefab

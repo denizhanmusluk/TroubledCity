@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LineDraw : MonoBehaviour,IStartGameObserver
 {
+	public GameObject lineParticlePrefab;
 	public GameObject linePrefab;
 	public LayerMask cantDrawOverLayer;
 	int cantDrawOverLayerIndex;
@@ -20,6 +21,12 @@ public	Camera cam;
 	GameObject followObject;
 	int helpNo;
 private	bool clickActionActive = true;
+
+	private float m_previousX;
+	private float dX;
+
+	private float m_previousY;
+	private float dY;
 	void Start()
 	{
 		GameManager.Instance.Add_StartObserver(this);
@@ -62,7 +69,10 @@ private	bool clickActionActive = true;
 					followObject = hit.collider.gameObject;
 					helpNo = hit.collider.GetComponent<HelperTeam>().helpNo;
 					currentLine.GetComponent<LineRenderer>().material = lineMaterial[hit.collider.GetComponent<HelperTeam>().helpNo];
-
+					m_previousX = Input.mousePosition.x;
+					dX = 0f;	
+					m_previousY = Input.mousePosition.y;
+					dY = 0f;
 				}
 			}
 
@@ -82,6 +92,9 @@ private	bool clickActionActive = true;
 			{
 				if (GetComponent<HelperTeam>().helpDrawActive && drawing)
 				{
+					dX = 0f;
+					dY = 0f;
+
 					if (hit.collider.GetComponent<IHelper>() != null && hit.collider.tag == "troublearea")
 					{
 						EndDraw();
@@ -128,7 +141,17 @@ private	bool clickActionActive = true;
 		{
 			if (hit.collider.GetComponent<IRoad>() != null)
 			{
+				dX = (Input.mousePosition.x - m_previousX);
+				dY = (Input.mousePosition.y - m_previousY);
+
 				currentLine.AddPoint(hit.point);
+				if (dX != 0 || dY != 0)
+				{
+					Instantiate(lineParticlePrefab, hit.point, Quaternion.identity);
+				}
+				m_previousX = Input.mousePosition.x;
+				m_previousY = Input.mousePosition.y;
+
 			}
 		}
 	}

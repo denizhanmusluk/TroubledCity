@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!135 &4348945962030015207
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132094574347689932}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1006777120512796268
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,19 +87,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!135 &4348945962030015207
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132094574347689932}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 4.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4968720331123731521
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,19 +289,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 1006777120512796268}
   IconCanvas: {fileID: 7959158803495010298}
---- !u!135 &8367121094132538973
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8084050290642147484}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 4.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7959158803495010298
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +388,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!135 &8367121094132538973
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8084050290642147484}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8467129377304468048
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,6 +652,11 @@ PrefabInstance:
       propertyPath: lineMaterial.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: 2bade3806e9d6254fac2fe9fc0b50fc0, type: 2}
+    - target: {fileID: 3377627809170911616, guid: 2ebc049887fe9fb4fabd0be9c0364409,
+        type: 3}
+      propertyPath: lineParticlePrefab
+      value: 
+      objectReference: {fileID: 189228, guid: 5c45532c8ec14714da20eaab1ea21c1b, type: 3}
     - target: {fileID: 5989272551303522452, guid: 2ebc049887fe9fb4fabd0be9c0364409,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -1461,6 +1466,11 @@ PrefabInstance:
       propertyPath: lineMaterial.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: 2bade3806e9d6254fac2fe9fc0b50fc0, type: 2}
+    - target: {fileID: 3377627809170911616, guid: 2ebc049887fe9fb4fabd0be9c0364409,
+        type: 3}
+      propertyPath: lineParticlePrefab
+      value: 
+      objectReference: {fileID: 189228, guid: 5c45532c8ec14714da20eaab1ea21c1b, type: 3}
     - target: {fileID: 5989272551303522452, guid: 2ebc049887fe9fb4fabd0be9c0364409,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -1670,6 +1680,11 @@ PrefabInstance:
       propertyPath: lineMaterial.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: 2bade3806e9d6254fac2fe9fc0b50fc0, type: 2}
+    - target: {fileID: 3377627809170911616, guid: 2ebc049887fe9fb4fabd0be9c0364409,
+        type: 3}
+      propertyPath: lineParticlePrefab
+      value: 
+      objectReference: {fileID: 189228, guid: 5c45532c8ec14714da20eaab1ea21c1b, type: 3}
     - target: {fileID: 5989272551303522452, guid: 2ebc049887fe9fb4fabd0be9c0364409,
         type: 3}
       propertyPath: m_SizeDelta.x

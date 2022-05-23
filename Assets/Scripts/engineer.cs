@@ -54,21 +54,21 @@ public class engineer : MonoBehaviour
     }
     void moveTarget()
     {
-        if (Vector3.Distance(transform.position, targetGuilty.position) < 4f)
+        if (Vector3.Distance(transform.position, targetGuilty.position) < 6f)
         {
-            //anim.SetBool("gun", true);
+            anim.SetBool("gun", true);
             agent.SetDestination(transform.position);
             currentSelection = States.repairing;
         }
         else
         {
             agent.SetDestination(targetGuilty.position);
-            //anim.SetBool("gun", false);
+            anim.SetBool("gun", false);
         }
     }
     void firstMoving()
     {
-        if (Vector3.Distance(transform.position, firstPos) < 2)
+        if (Vector3.Distance(transform.position, firstPos) < 4f)
         {
             agent.SetDestination(transform.position);
             Destroy(gameObject);
@@ -76,7 +76,7 @@ public class engineer : MonoBehaviour
         else
         {
             agent.SetDestination(firstPos);
-            //anim.SetBool("gun", false);
+            anim.SetBool("gun", false);
         }
     }
     void repair()

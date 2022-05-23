@@ -19297,7 +19297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6117953750069652887
 Transform:
   m_ObjectHideFlags: 0
@@ -19306,7 +19306,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299342707571970515}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.27, y: 0, z: 6.32}
+  m_LocalPosition: {x: 9.76, y: 0, z: 4.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3293457102615815514}
@@ -19611,6 +19611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b6efbb4cae8c540ad814d93bb97137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineParticlePrefab: {fileID: 189228, guid: 7cf0512965e6fe447b0dee04860344dc, type: 3}
   linePrefab: {fileID: 1576317030557830, guid: d489242030c18584caa5c64bba0a6082, type: 3}
   cantDrawOverLayer:
     serializedVersion: 2
@@ -19685,6 +19686,7 @@ MonoBehaviour:
   helpNo: 3
   crash: 0
   waterParticle: []
+  _troubleArea: {fileID: 0}
   questionMark: {fileID: 8760261744781570348}
   policePrefab: {fileID: 6329391237241081351, guid: 5970005b65f78d04faabed20fe8cf77a,
     type: 3}
@@ -20211,7 +20213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4573849816617080634
 Transform:
   m_ObjectHideFlags: 0
@@ -20220,7 +20222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2227706727154384125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.27, y: 0, z: 6.32}
+  m_LocalPosition: {x: -1.24, y: 0, z: 4.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1749640067310006482}
@@ -20836,6 +20838,7 @@ MonoBehaviour:
   helpNo: 3
   crash: 0
   waterParticle: []
+  _troubleArea: {fileID: 0}
   questionMark: {fileID: 5432963949130374183}
   policePrefab: {fileID: 6329391237241081351, guid: 5970005b65f78d04faabed20fe8cf77a,
     type: 3}
@@ -20857,6 +20860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b6efbb4cae8c540ad814d93bb97137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineParticlePrefab: {fileID: 189228, guid: 7cf0512965e6fe447b0dee04860344dc, type: 3}
   linePrefab: {fileID: 1576317030557830, guid: d489242030c18584caa5c64bba0a6082, type: 3}
   cantDrawOverLayer:
     serializedVersion: 2
@@ -21669,7 +21673,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4535805608494747625}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.24, y: 0, z: 6.32}
+  m_LocalPosition: {x: -1.75, y: 0, z: 4.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8375611429472764936}
@@ -41652,6 +41656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b6efbb4cae8c540ad814d93bb97137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineParticlePrefab: {fileID: 189228, guid: 7cf0512965e6fe447b0dee04860344dc, type: 3}
   linePrefab: {fileID: 1576317030557830, guid: d489242030c18584caa5c64bba0a6082, type: 3}
   cantDrawOverLayer:
     serializedVersion: 2
@@ -41713,6 +41718,7 @@ MonoBehaviour:
   helpNo: 3
   crash: 0
   waterParticle: []
+  _troubleArea: {fileID: 0}
   questionMark: {fileID: 5652773499500498638}
   policePrefab: {fileID: 6329391237241081351, guid: 5970005b65f78d04faabed20fe8cf77a,
     type: 3}
@@ -60996,22 +61002,22 @@ PrefabInstance:
     - target: {fileID: 1972806130722217495, guid: 7582805614701ed4089165fe41039a49,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.84
+      value: 2.39
       objectReference: {fileID: 0}
     - target: {fileID: 1972806130722217495, guid: 7582805614701ed4089165fe41039a49,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.48
+      value: 1.38
       objectReference: {fileID: 0}
     - target: {fileID: 1972806130722217495, guid: 7582805614701ed4089165fe41039a49,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.84
+      value: 6.15
       objectReference: {fileID: 0}
     - target: {fileID: 1972806130722217495, guid: 7582805614701ed4089165fe41039a49,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: -0.7069834
       objectReference: {fileID: 0}
     - target: {fileID: 1972806130722217495, guid: 7582805614701ed4089165fe41039a49,
         type: 3}
@@ -61021,12 +61027,12 @@ PrefabInstance:
     - target: {fileID: 1972806130722217495, guid: 7582805614701ed4089165fe41039a49,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1972806130722217495, guid: 7582805614701ed4089165fe41039a49,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071067
+      value: 0.7072302
       objectReference: {fileID: 0}
     - target: {fileID: 1972806130722217495, guid: 7582805614701ed4089165fe41039a49,
         type: 3}
@@ -61036,7 +61042,7 @@ PrefabInstance:
     - target: {fileID: 1972806130722217495, guid: 7582805614701ed4089165fe41039a49,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -89.98
       objectReference: {fileID: 0}
     - target: {fileID: 1972806130722217495, guid: 7582805614701ed4089165fe41039a49,
         type: 3}

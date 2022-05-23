@@ -52,6 +52,8 @@ public class HelperTeam : MonoBehaviour
 	}
 	public void helper(Line currentLine, GameObject troubleArea)
 	{
+		currentLine.AddPoint(troubleArea.transform.position);
+
 		helpDrawActive = false;
 		_currentLine = currentLine;
 		_troubleArea = troubleArea;
@@ -94,7 +96,7 @@ public class HelperTeam : MonoBehaviour
 				Quaternion newRot = Quaternion.Euler(0, targetAngle, 0);
 
 
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, equipSpeed* 6f * Time.deltaTime);
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, equipSpeed* 8f * Time.deltaTime);
 			}
 			else
 			{
@@ -107,7 +109,7 @@ public class HelperTeam : MonoBehaviour
 				Quaternion newRot = Quaternion.Euler(0, targetAngle, 0);
 
 
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, equipSpeed * 6f  * Time.deltaTime);
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, equipSpeed * 8f  * Time.deltaTime);
 			}
 			while (Vector3.Distance(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition((int)posNo)) < 5f && posNo < currentLine.GetComponent<LineRenderer>().positionCount - 1)
 			{
@@ -301,7 +303,7 @@ public class HelperTeam : MonoBehaviour
 				Quaternion newRot = Quaternion.Euler(0, targetAngle, 0);
 
 
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, equipSpeed * 6f * Time.deltaTime);
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, equipSpeed * 8f * Time.deltaTime);
 				//followObject.transform.rotation = Quaternion.Euler(followObject.transform.eulerAngles.x, Mathf.Atan(dir.z/dir.x) *180/Mathf.PI , followObject.transform.eulerAngles.z);
 			}
 			else
@@ -315,7 +317,7 @@ public class HelperTeam : MonoBehaviour
 				Quaternion newRot = Quaternion.Euler(0, targetAngle, 0);
 
 
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, equipSpeed * 6f * Time.deltaTime);
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, equipSpeed * 8f * Time.deltaTime);
 			}
 			//followObject.transform.position = currentLine.GetComponent<LineRenderer>().GetPosition(posNo);
 			while (Vector3.Distance(transform.position, _currentLine.GetComponent<LineRenderer>().GetPosition((int)posNo)) < 10f && posNo > 1)
