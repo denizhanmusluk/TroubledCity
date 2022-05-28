@@ -118,24 +118,31 @@ public class HelperTeam : MonoBehaviour
 			posNo += Time.deltaTime * equipSpeed/12.5f;
 			yield return null;
 		}
-		while (Vector3.Distance(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition(currentLine.GetComponent<LineRenderer>().positionCount - 1)) > 1f)
+		if (!crash)
 		{
-			if (crash)
+			
+			while (Vector3.Distance(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition(currentLine.GetComponent<LineRenderer>().positionCount - 1)) > 1f)
 			{
-				crash = false;
-				//crashCar();
-				break;
+				//if (crash)
+				//{
+				//	Debug.Log(transform.name);
+
+				//	crash = false;
+				//	//crashCar();
+				//	break;
+				//}
+				if (_troubleArea == null)
+				{
+
+					break;
+				}
+				transform.position = Vector3.MoveTowards(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition(currentLine.GetComponent<LineRenderer>().positionCount - 1), equipSpeed * Time.deltaTime);
+				yield return null;
 			}
-            if (_troubleArea == null)
-            {
-		
-				break;
-            }
-            transform.position = Vector3.MoveTowards(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition(currentLine.GetComponent<LineRenderer>().positionCount - 1), equipSpeed * Time.deltaTime);
-			yield return null;
 		}
 		if (Vector3.Distance(transform.position, currentLine.GetComponent<LineRenderer>().GetPosition(currentLine.GetComponent<LineRenderer>().positionCount - 1)) <= 1f)
 		{
+
 			if (_troubleArea != null)
 				StartCoroutine(fireExtinguishing());
 		}
@@ -155,6 +162,7 @@ public class HelperTeam : MonoBehaviour
 	}
 	IEnumerator fireExtinguishing()
 	{
+
 		if (_troubleArea.GetComponent<IHelper>().helpNo == helpNo)
 		{
 			_troubleArea.GetComponent<IHelper>().helpNo = -1;
@@ -252,9 +260,9 @@ public class HelperTeam : MonoBehaviour
 		else
         {
 			questionMark.SetActive(true);
-			yield return new WaitForSeconds(2f);
+			yield return new WaitForSeconds(1f);
 			questionMark.SetActive(false);
-		}
+				}
 		StartCoroutine(reMove(_currentLine.GetComponent<LineRenderer>().positionCount - 1));
 		yield return null;
 		reMovingActive = true;
@@ -269,12 +277,12 @@ public class HelperTeam : MonoBehaviour
 	}
 	IEnumerator fireFigterSpawn()
     {
-		yield return new WaitForSeconds(0.5f);
-		GameObject fireFighter = Instantiate(fireFighterPrefab, new Vector3(transform.position.x, -76.26f, transform.position.z) + new Vector3(transform.right.x, 0, transform.right.x) * 8, Quaternion.identity);
+		yield return new WaitForSeconds(0.2f);
+		GameObject fireFighter = Instantiate(fireFighterPrefab, new Vector3(transform.position.x, -76.26f, transform.position.z) + (transform.position - _troubleArea.transform.position).normalized * 10, Quaternion.identity);
 		fireFighter.GetComponent<fireFighter>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform;
 		fireFighter.GetComponent<fireFighter>().firstPos = transform;
 
-		GameObject fireFighter2 = Instantiate(fireFighterPrefab, new Vector3(transform.position.x, -76.26f, transform.position.z) - new Vector3(transform.right.x, 0, transform.right.x) * 8, Quaternion.identity);
+		GameObject fireFighter2 = Instantiate(fireFighterPrefab, new Vector3(transform.position.x, -76.26f, transform.position.z) + (transform.position - _troubleArea.transform.position ).normalized  * 8, Quaternion.identity);
 		fireFighter2.GetComponent<fireFighter>().targetGuilty = _troubleArea.GetComponent<troubleArea>().fireParticle.transform;
 		fireFighter2.GetComponent<fireFighter>().firstPos = transform;
 	}

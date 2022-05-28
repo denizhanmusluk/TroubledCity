@@ -15,7 +15,7 @@ public class fireFighter : MonoBehaviour
     Animator anim;
  public   Transform firstPos;
     float gunCounter = 0f;
-
+    float moveCounter = 0f;
     void Start()
     {
         targetpoint = targetGuilty.parent;
@@ -56,10 +56,16 @@ public class fireFighter : MonoBehaviour
     }
     void moveTarget()
     {
+        moveCounter += Time.deltaTime;
         if (targetGuilty != null)
         {
+            if (moveCounter < 0.5f)
 
-            if (Vector3.Distance(transform.position, targetGuilty.transform.parent.position) < 3f)
+            {
+                agent.SetDestination(targetGuilty.transform.position);
+                anim.SetBool("aid", false);
+            }
+            else
             {
                 anim.SetBool("aid", true);
                 //destination.transform.parent.GetComponent<Build>().customerList.Remove(this.gameObject);
@@ -67,11 +73,20 @@ public class fireFighter : MonoBehaviour
                 currentSelection = States.aid;
                 gunParticle.Play();
             }
-            else
-            {
-                agent.SetDestination(targetGuilty.transform.parent.position);
-                anim.SetBool("aid", false);
-            }
+           
+            //if (Vector3.Distance(transform.position, targetGuilty.transform.position) < 3f)
+            //{
+            //    anim.SetBool("aid", true);
+            //    //destination.transform.parent.GetComponent<Build>().customerList.Remove(this.gameObject);
+            //    agent.SetDestination(transform.position);
+            //    currentSelection = States.aid;
+            //    gunParticle.Play();
+            //}
+            //else
+            //{
+            //    agent.SetDestination(targetGuilty.transform.position);
+            //    anim.SetBool("aid", false);
+            //}
         }
         else
         {
@@ -106,7 +121,7 @@ public class fireFighter : MonoBehaviour
         {
             gunCounter += Time.deltaTime;
             transform.LookAt(targetGuilty);
-            if (gunCounter > 2.5f)
+            if (gunCounter > 3f)
             {
                 gunCounter = 0;
                 currentSelection = States.firstMove;

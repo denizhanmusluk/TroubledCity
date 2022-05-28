@@ -14,6 +14,7 @@ public class moneyPanel : MonoBehaviour
     bool panelPosActive = false;
     Vector3 screenPos;
     bool moneyActive = true;
+    bool clickActive = true;
     void Start()
     {
         StartCoroutine(panelPos());
@@ -81,24 +82,27 @@ public class moneyPanel : MonoBehaviour
     }
     public void button()
     {
-        //GetComponent<Image>().enabled = false;
-        moneyActive = false;
-        StartCoroutine(panelClosing());
-        //StartCoroutine(panelRotate());
-
-        screenPos = Camera.main.WorldToScreenPoint(troublePos);
-        for (int i = 0; i < moneyAmount; i++)
+        if (clickActive)
         {
-            Instantiate(money, new Vector3(screenPos.x, screenPos.y, 0), Quaternion.identity, this.transform);
-        }
+            clickActive = false;
+            //GetComponent<Image>().enabled = false;
+            moneyActive = false;
+            StartCoroutine(panelClosing());
+            //StartCoroutine(panelRotate());
 
-        for (int i = 0; i < moneyAmount; i++)
-        {
-            StartCoroutine(moneyScattering(transform.GetChild(i).GetComponent<RectTransform>()));
-        }
-        StartCoroutine(collecting());
-        panelPosActive = false;
+            screenPos = Camera.main.WorldToScreenPoint(troublePos);
+            for (int i = 0; i < moneyAmount; i++)
+            {
+                Instantiate(money, new Vector3(screenPos.x, screenPos.y, 0), Quaternion.identity, this.transform);
+            }
 
+            for (int i = 0; i < moneyAmount; i++)
+            {
+                StartCoroutine(moneyScattering(transform.GetChild(i).GetComponent<RectTransform>()));
+            }
+            StartCoroutine(collecting());
+            panelPosActive = false;
+        }
         //panel.SetActive(false);
     }
     IEnumerator moneyScattering(RectTransform mny)
@@ -136,7 +140,7 @@ public class moneyPanel : MonoBehaviour
         mny.position = target.position;
         yield return null;
         Destroy(mny.gameObject);
-        GameManager.Instance.MoneyUpdate(200);
+        GameManager.Instance.MoneyUpdate(100);
         moneyAmount--;
         if(moneyAmount == 0)
         {
